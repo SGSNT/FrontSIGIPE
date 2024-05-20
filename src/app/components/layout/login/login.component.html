@@ -22,16 +22,16 @@
     </div>
     
     <mdb-form-control class="mb-3">
-      <input mdbInput type="text" id="form-log" class="form-control" />
+      <input mdbInput type="text" id="form-log" class="form-control" [(ngModel)]="login"/>
       <label mdbLabel class="form-label" for="form-log">Login</label>
     </mdb-form-control>
 
     <mdb-form-control>
-      <input mdbInput type="password" id="form-pass" class="form-control" />
+      <input mdbInput type="password" id="form-pass" class="form-control" [(ngModel)]="senha"/>
       <label mdbLabel class="form-label" for="form-pass">Senha</label>
     </mdb-form-control>
 
-    <button type="button" class="btn btn-primary btn-btn" mdbRipple>Acessar</button>
+    <button type="button" class="btn btn-primary btn-btn" mdbRipple (click)="logar()">Acessar</button>
 
   </div>
 
