@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+@font-face {
+
+    font-family: Vanguard-CF-bold;
+    src: url("assets/fonts/Vanguard-CF-Bold.otf");
+    
+}
+
+@font-face {
+    font-family: Aprova;
+    src: url("assets/fonts/Aprova-Regular.otf"),
+         url("assets/fonts/Aprova-Bold.otf"),
+         url("assets/fonts/Aprova-Black.otf");
+}

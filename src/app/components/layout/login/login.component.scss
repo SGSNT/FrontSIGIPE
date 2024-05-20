@@ -1,0 +1,65 @@
+main {
+    font-family: Aprova; 
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+   
+ }
+ 
+ .form-login{
+
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   width: 400px;
+   height: 450px;
+   margin-top: 10px;
+   margin-left: 90px;
+   border-radius: 10px;
+   box-shadow: -5px 5px 5px -5px rgba(0, 0, 0, 0.5), /* Sombra no lado esquerdo */
+              5px 5px 5px -5px rgba(0, 0, 0, 0.5),  /* Sombra no lado direito */
+              0 -5px 5px -5px rgba(0, 0, 0, 0.5);  
+ }
+
+
+ h4{
+  background-color: #28a745;
+  width: 400px;
+  height: 70px;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+ }
+
+ .dropdown-toggle{
+  width: 200px;
+  height: 36px;
+  background-color: #28a745;
+  margin-top: 50px;
+
+ }
+
+.form-control{
+
+  width: 200px;
+  height: 36px;
+ 
+
+ }
+
+ .form-imagem img{
+  width: 913px;
+  height: 715px;
+  margin-left: 91px;
+ }
+
+ .btn-btn{
+  background-color: #28a745;
+  width: 200px;
+  height: 36px;
+  margin-top: 55px;
+ }
