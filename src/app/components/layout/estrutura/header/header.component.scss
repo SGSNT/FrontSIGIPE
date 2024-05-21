@@ -1,4 +1,20 @@
+header{
+    height: 64px;
+    padding: 0;
+}
 header>div.container{
-    align-items: flex-end;
     justify-content: flex-end;
+    margin: 0;
+    padding: 0 40px;
+    height: 100%;
+    max-width: none;
+    width: 100%;
+}
+header>div.container>a{
+    margin: 0;
+    padding: 0;
+    height: 50%;
+}
+header>div.container>a>img{
+    height: 100%;
 }

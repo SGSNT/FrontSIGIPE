@@ -1,0 +1,19 @@
+nav{
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 0;
+
+
+
+
+    background-color: aqua;
+}
+.navBtnGrp{
+    width: 100px;
+}
+button{
+    width: 100%;
+    border: none;
+}
