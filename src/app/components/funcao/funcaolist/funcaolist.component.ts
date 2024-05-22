@@ -36,5 +36,39 @@ export class FuncaolistComponent {
       }
     );
   }
+  deleteById(funcao: Funcao){
+    Swal.fire({
+      title: "Tem certeza que quer excluir a função "+funcao.nome+"?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      denyButtonText: `Não (Cancelar)`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.funcaoService.delete(funcao.idFuncao).subscribe(
+          {
+            next: mensagem =>{
+              this.findAll();
+              Swal.fire({
+                title: "Sucesso",
+                text: mensagem,
+                icon: "success"
+              });
+            },
+            error: erro =>{
+              Swal.fire({
+                title: "Houve um erro",
+                text: "Mais informações no console",
+                icon: "error"
+              });
+              console.log(erro);
+            }
+          }
+        );
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  }
 
 }
