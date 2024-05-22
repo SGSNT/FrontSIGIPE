@@ -1,2 +1,4 @@
-export class Coordenadorextensao {
+import { Pessoa } from "./pessoa";
+
+export class Coordenadorextensao extends Pessoa{
 }
