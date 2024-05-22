@@ -1,17 +1,17 @@
 import { Pessoa } from "./pessoa";
 
 export class Funcao {
-    id!: number;
-    funcao!: string;
+    idFuncao!: number;
+    nome!: string;
     pessoas: Pessoa[] = [];
 
     constructor(
         id: number,
-        funcao: string,
+        nome: string,
         pessoas: Pessoa[]
     ) {
-        this.id = id;
-        this.funcao = funcao;
+        this.idFuncao = id;
+        this.nome = nome;
         this.pessoas = pessoas;
     }
 }
