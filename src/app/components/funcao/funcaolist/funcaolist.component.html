@@ -52,6 +52,6 @@
     ></button>
   </div>
   <div class="modal-body">
-    <app-funcaodetails [funcao]="funcaoEdit"></app-funcaodetails>
+    <app-funcaodetails [funcao]="funcaoEdit" (retorno)="retornoDetalhe($event)"></app-funcaodetails>
   </div>
 </ng-template>

@@ -85,4 +85,8 @@ export class FuncaolistComponent {
     this.modalRef = this.modalService.open(this.modalFuncaoDetalhe);//usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
   }
 
+  retornoDetalhe(funcao: Funcao){
+    this.findAll();
+    this.modalRef.close();
+  }
 }
