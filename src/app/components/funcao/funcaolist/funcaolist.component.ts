@@ -48,7 +48,7 @@ export class FuncaolistComponent {
     Swal.fire({
       title: "Tem certeza que quer excluir a função "+funcao.nome+"?",
       showDenyButton: true,
-      showCancelButton: true,
+      showCancelButton: false,
       confirmButtonText: "Sim",
       denyButtonText: `Não (Cancelar)`
     }).then((result) => {
