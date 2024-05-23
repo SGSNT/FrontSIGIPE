@@ -3,11 +3,12 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Funcao } from '../../../models/funcao';
 import { Router } from '@angular/router';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-funcaodetails',
   standalone: true,
-  imports: [MdbFormsModule, MdbModalModule],
+  imports: [MdbFormsModule, MdbModalModule, FormsModule],
   templateUrl: './funcaodetails.component.html',
   styleUrl: './funcaodetails.component.scss'
 })
