@@ -53,7 +53,27 @@ export class FuncaodetailsComponent {
         }
       );
     }else{
-
+      this.funcaoService.save(this.funcao).subscribe(
+        {
+          next: mensagem=>{
+            Swal.fire({
+              title: "Sucesso",
+              text: mensagem,
+              icon: "success"
+            });
+            this.router.navigate(['admin/carros'], { state: { funcaoNova: this.funcao } });
+            this.retorno.emit(this.funcao);
+          },
+          error: erro=>{
+            Swal.fire({
+              title: "Houve um erro",
+              text: "Mais informações ",
+              icon: "error"
+            });
+            console.log(erro);
+          }
+        }
+      );
     }
   }
 
