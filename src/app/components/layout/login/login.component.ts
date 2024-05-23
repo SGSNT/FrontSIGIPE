@@ -22,7 +22,7 @@ export class LoginComponent {
     
     if(this.login == 'admin' && this.senha == 'admin'){
 
-      this.router.navigate(['estrutura']);
+      this.router.navigate(['admin/funcao']);
 
     }else{
       alert('Login ou senha inválidos!');

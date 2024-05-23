@@ -1,28 +1,57 @@
 <div class="container">
-    <h1>Funções</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Função</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (funcao of lista; track $index) {
-          <tr>
-            <th scope="row">{{funcao.idFuncao}}</th>
-            <td>{{funcao.nome}}</td>
-            <td>
-              <button type="button" class="btn btn-primary btn-rounded" mdbRipple>
-                Editar
-              </button>
-              <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(funcao)">
-                Deletar
-              </button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+  <h1>Funções</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Função</th>
+        <th scope="col">
+          <button
+            type="button"
+            class="btn btn-primary btn-rounded"
+            mdbRipple
+            (click)="new()"
+          >
+            Novo
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (funcao of lista; track $index) {
+      <tr>
+        <th scope="row">{{ funcao.idFuncao }}</th>
+        <td>{{ funcao.nome }}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-rounded" mdbRipple>
+            Editar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btn-rounded"
+            mdbRipple
+            (click)="deleteById(funcao)"
+          >
+            Deletar
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<ng-template #modalFuncaoDetalhe>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
   </div>
+  <div class="modal-body">
+    <app-funcaodetails ></app-funcaodetails>
+  </div>
+</ng-template>

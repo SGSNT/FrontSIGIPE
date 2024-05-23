@@ -11,5 +11,5 @@ import { MainComponent } from '../main/main.component';
   styleUrl: './frame.component.scss'
 })
 export class FrameComponent {
-
+  
 }

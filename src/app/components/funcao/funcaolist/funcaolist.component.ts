@@ -1,17 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
 import { Funcao } from '../../../models/funcao';
 import { FuncaoService } from '../../../services/funcao.service';
 import Swal from 'sweetalert2';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { FuncaodetailsComponent } from '../funcaodetails/funcaodetails.component';
 
 @Component({
   selector: 'app-funcaolist',
   standalone: true,
-  imports: [],
+  imports: [FuncaodetailsComponent, MdbModalModule],
   templateUrl: './funcaolist.component.html',
   styleUrl: './funcaolist.component.scss'
 })
 export class FuncaolistComponent {
   lista: Funcao[] = [];
+  funcaoEdit: Funcao = new Funcao();
+  
+  modalService = inject(MdbModalService); //eu conseguir abrir a modal... pelo TS
+  @ViewChild("modalFuncaoDetalhe") modalFuncaoDetalhe!: TemplateRef<any>; //enxergar o bloco de html da modal
+  modalRef!: MdbModalRef<any>; //conseguir fechar a modal aberta pelo TS
 
   funcaoService = inject(FuncaoService);
 
@@ -65,10 +73,16 @@ export class FuncaolistComponent {
             }
           }
         );
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
       }
     });
+  }
+  new(){
+    this.funcaoEdit = new Funcao();
+    this.modalRef = this.modalService.open(this.modalFuncaoDetalhe);//usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
+  }
+  edit(funcao: Funcao){
+    this.funcaoEdit = Object.assign({}, funcao);
+    this.modalRef = this.modalService.open(this.modalFuncaoDetalhe);//usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
   }
 
 }
