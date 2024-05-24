@@ -71,6 +71,24 @@
       <label mdbLabel class="form-label" for="inputTelefone">Telefone</label>
     </mdb-form-control>
 
+    <div class="row">
+      <div class="col-lg-8">
+        <p class="text-primary alert-primary">
+          Função: {{ aluno.funcao.nome }}
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <button
+          type="button"
+          class="btn btn-sm btn-warning btn-rounded"
+          mdbRipple
+          (click)="buscarFuncao()"
+        >
+          Trocar Funcao
+        </button>
+      </div>
+    </div>
+
     <!-- Submit button -->
     <button
       mdbRipple
@@ -82,3 +100,21 @@
     </button>
   </form>
 </div>
+
+<ng-template #modalFuncao>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Marcas</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-funcaolist
+      [esconderBotoes]="true"
+      (retorno)="retornoFuncao($event)"
+    ></app-funcaolist>
+  </div>
+</ng-template>

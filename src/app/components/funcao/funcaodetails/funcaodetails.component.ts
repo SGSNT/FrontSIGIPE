@@ -27,7 +27,32 @@ export class FuncaodetailsComponent {
   @ViewChild("modalPessoas") modalPessoas!: TemplateRef<any>; //enxergar o bloco de html da modal
   modalRef!: MdbModalRef<any>; //conseguir fechar a modal aberta pelo TS
   
-  constructor(){}
+  constructor(){
+    let id = this.router2.snapshot.params['id'];
+    if(id > 0){
+      this.findById(id);
+    }else{
+      if(this.funcao.idFuncao > 0)
+        this.findById(id);
+    }
+  }
+
+  findById(id: number){
+
+    this.funcaoService.findById(id).subscribe({
+      next: retorno => {
+        this.funcao = retorno;
+      },
+      error: erro => {
+        Swal.fire({
+          title: "Houve um erro",
+          text: "Mais informações no console",
+          icon: "error"
+        });
+        console.log(erro);
+      }
+    });
+  }
 
   save(){
     if(this.funcao.idFuncao>0){

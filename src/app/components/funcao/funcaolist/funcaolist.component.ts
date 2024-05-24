@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { Funcao } from '../../../models/funcao';
 import { FuncaoService } from '../../../services/funcao.service';
 import Swal from 'sweetalert2';
@@ -16,6 +16,9 @@ import { FuncaodetailsComponent } from '../funcaodetails/funcaodetails.component
 export class FuncaolistComponent {
   lista: Funcao[] = [];
   funcaoEdit: Funcao = new Funcao();
+
+  @Input("esconderBotoes") esconderBotoes: boolean = false;
+  @Output("retorno") retorno = new EventEmitter<any>();
   
   modalService = inject(MdbModalService); //eu conseguir abrir a modal... pelo TS
   @ViewChild("modalFuncaoDetalhe") modalFuncaoDetalhe!: TemplateRef<any>; //enxergar o bloco de html da modal
@@ -88,5 +91,9 @@ export class FuncaolistComponent {
   retornoDetalhe(funcao: Funcao){
     this.findAll();
     this.modalRef.close();
+  }
+
+  select(funcao: Funcao){
+    this.retorno.emit(funcao);
   }
 }

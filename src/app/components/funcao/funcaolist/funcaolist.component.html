@@ -23,17 +23,24 @@
         <th scope="row">{{ funcao.idFuncao }}</th>
         <td>{{ funcao.nome }}</td>
         <td>
-          <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(funcao)">
-            Editar
-          </button>
-          <button
-            type="button"
-            class="btn btn-danger btn-rounded"
-            mdbRipple
-            (click)="deleteById(funcao)"
-          >
-            Deletar
-          </button>
+          @if(esconderBotoes){
+            <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="select(funcao)">
+              Editar
+            </button>
+          }
+          @else {
+            <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(funcao)">
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-rounded"
+              mdbRipple
+              (click)="deleteById(funcao)"
+            >
+              Deletar
+            </button>
+          }
         </td>
       </tr>
       }
