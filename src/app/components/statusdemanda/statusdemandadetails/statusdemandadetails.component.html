@@ -1,0 +1,27 @@
+<div class="container">
+    <form>
+      <mdb-form-control class="mb-4">
+        <input
+          mdbInput
+          type="text"
+          id="inputNome"
+          class="form-control"
+          name="nome"
+          [(ngModel)]="statusDemanda.nome"
+          (keyup.enter)="save()"
+          required
+        />
+        <label mdbLabel class="form-label" for="inputNome">Nome</label>
+      </mdb-form-control>
+  
+      <!-- Submit button -->
+      <button
+        mdbRipple
+        type="button"
+        class="btn btn-primary btn-block mb-4"
+        (click)="save()"
+      >
+        Salvar
+      </button>
+    </form>
+  </div>
