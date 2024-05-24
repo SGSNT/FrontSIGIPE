@@ -47,7 +47,7 @@ export class InstituicaolistComponent {
       this.lista[indice] = editInstituicao;
     }
   }
-
+ 
   listAll(){
 
     this.instituicaoService.listAll().subscribe({
@@ -129,7 +129,7 @@ export class InstituicaolistComponent {
   this.modalRef = this.modalService.open(this.modalInstituicaoDetalhe);
  }
 
- retunDetail(instituicao: Instituicao){
+ returnDetail(instituicao: Instituicao){
 
   this.listAll();
   this.modalRef.close();

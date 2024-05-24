@@ -4,7 +4,7 @@
 
   <div class="bt-save">
 
-    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()"><i class="fas fa-plus"></i></button>
+    <button (click)="save()" type="button" class="btn btn-primary btn-rounded" mdbRipple><i class="fas fa-plus"></i></button>
 
   </div>
 
@@ -37,7 +37,7 @@
           <td>{{instituicao.cep}}</td>
           <td>{{instituicao.cnpj}}</td>
           <td>{{instituicao.razaoSocial}}</td>
-
+ 
           <td>
 
               <button class="btn btn-sucesses btn-rounded" mdbRipple (click)="update(instituicao)"><i class="fas fa-pen"></i></button>
@@ -70,7 +70,7 @@
 
    <div class="modal-body">
 
-    <app-instituicaodetails [Instituicao]="instituicaoEdit" (return)="retunDetail($event)"></app-instituicaodetails>
+    <app-instituicaodetails [Instituicao]="instituicaoEdit" (return)="returnDetail($event)"></app-instituicaodetails>
 
    </div>
 

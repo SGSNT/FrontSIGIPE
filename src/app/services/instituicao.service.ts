@@ -16,11 +16,11 @@ export class InstituicaoService {
     }
 
   save(instituicao: Instituicao): Observable<String>{
-    return this.http.post<string>(this.API + "/save",Instituicao,{responseType: 'text' as 'json'});
+    return this.http.post<string>(this.API + "/save",instituicao,{responseType: 'text' as 'json'});
   }
 
   update(instituicao: Instituicao, id:number): Observable<string>{
-    return this.http.put<string>(this.API + "/update/" + id, Instituicao, {responseType: 'text' as 'json'});
+    return this.http.put<string>(this.API + "/update/" + id, instituicao,{responseType: 'text' as 'json'});
   }
 
   delete(id: number): Observable<string>{

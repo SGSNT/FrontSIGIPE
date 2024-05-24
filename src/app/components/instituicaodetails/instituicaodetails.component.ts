@@ -29,7 +29,7 @@ export class InstituicaodetailsComponent {
 
   constructor(){
 
-    let id = this.router.snapshot.params['idInstituicao'];
+    let id = this.router.snapshot.params['id'];
     if(id > 0){
       this.findById(id);
     }else{
