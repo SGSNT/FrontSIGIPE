@@ -11,12 +11,5 @@ export class Curso {
     professores: Professor[] = [];
     coordenadores: Coordenadorcurso[] = [];
 
-    constructor(id: number, nome: string, demandas: Demanda[], alunos: Aluno[], professores: Professor[], coordenadores: Coordenadorcurso[]){
-        this.alunos = alunos;
-        this.coordenadores=coordenadores;
-        this.demandas = demandas;
-        this.id = id;
-        this.nome = nome;
-        this.professores = professores;
-    }
+    constructor(){}
 }

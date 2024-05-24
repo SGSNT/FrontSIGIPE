@@ -2,7 +2,7 @@ import { Funcao } from './funcao';
 import { Statuspessoa } from './statuspessoa';
 
 export class Pessoa {
-  id!: number;
+  idPessoa!: number;
   nome!: string;
   login!: string;
   senha!: number;

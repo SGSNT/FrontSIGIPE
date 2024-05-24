@@ -39,7 +39,7 @@ export class FuncaodetailsComponent {
               text: mensagem,
               icon: "success"
             });
-            this.router.navigate(['admin/carros'], { state: { funcaoNova: this.funcao } });
+            this.router.navigate(['admin/funcao'], { state: { funcaoNova: this.funcao } });
             this.retorno.emit(this.funcao);
           },
           error: erro =>{
@@ -61,7 +61,7 @@ export class FuncaodetailsComponent {
               text: mensagem,
               icon: "success"
             });
-            this.router.navigate(['admin/carros'], { state: { funcaoNova: this.funcao } });
+            this.router.navigate(['admin/funcao'], { state: { funcaoNova: this.funcao } });
             this.retorno.emit(this.funcao);
           },
           error: erro=>{

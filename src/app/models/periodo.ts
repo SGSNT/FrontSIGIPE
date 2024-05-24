@@ -7,15 +7,5 @@ export class Periodo {
     professores: Professor[] = [];
     alunos: Aluno[] = [];
 
-    constructor(
-        id: number,
-        periodo: number,
-        professores: Professor[],
-        alunos: Aluno[]
-    ) {
-        this.id = id;
-        this.periodo = periodo;
-        this.professores = professores;
-        this.alunos = alunos;
-    }
+    constructor() {}
 }
