@@ -1,7 +1,7 @@
 import { Pessoa } from "./pessoa";
 
 export class Statuspessoa {
-    id!: number;
+    idStatusPessoa!: number;
     nome!: string;
     pessoas: Pessoa[] = [];
 
