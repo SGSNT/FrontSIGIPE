@@ -21,8 +21,8 @@ export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'admin', component: FrameComponent, children: [
-        {path: 'funcao', component: FuncaolistComponent},
         {path: 'pessoa', component: PessoalistComponent},
+        {path: 'funcao', component: FuncaolistComponent},
         {path: 'aluno', component: AlunolistComponent},
         {path: 'professor', component: ProfessorlistComponent},
         {path: 'coordenadorCurso', component: CoordenadorcursolistComponent},
