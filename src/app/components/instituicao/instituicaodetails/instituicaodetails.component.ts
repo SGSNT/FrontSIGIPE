@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 import { InstituicaolistComponent } from '../instituicaolist/instituicaolist.component';
-import { Instituicao } from '../../models/instituicao';
+import { Instituicao } from '../../../models/instituicao';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { InstituicaoService } from '../../services/instituicao.service';
+import { InstituicaoService } from '../../../services/instituicao.service';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -17,7 +17,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 })
 export class DemandantedetailsComponent {
 
-  @Input("Demandante") Demandante: Demandante = new Demandante(0,'','','');
+  @Input("Demandante") Demandante: Demandante = new Demandante();
   @Output("return") return = new EventEmitter<any>();
   router = inject(ActivatedRoute);
   router2 = inject(Router);
