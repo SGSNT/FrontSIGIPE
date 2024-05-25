@@ -83,7 +83,7 @@ export class DemandalistComponent {
   }
   edit(demanda: Demanda){
     this.demandaEdit = Object.assign({}, demanda);
-    this.modalRef = this.modalService.open(this.modalDemandaDetalhe);//usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
+    this.modalRef = this.modalService.open(this.modalDemandaDetalhe);
   }
 
   retornoDetalhe(demanda:Demanda){
