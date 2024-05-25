@@ -16,6 +16,7 @@ import { StatusdemandalistComponent } from './components/statusdemanda/statusdem
 import { StatuspessoalistComponent } from './components/statuspessoa/statuspessoalist/statuspessoalist.component';
 import { TipoinstituicaolistComponent } from './components/tipoinstituicao/tipoinstituicaolist/tipoinstituicaolist.component';
 import { InstituicaolistComponent } from './components/instituicao/instituicaolist/instituicaolist.component';
+import { PeriodolistComponent } from './components/periodo/periodolist/periodolist.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -34,6 +35,7 @@ export const routes: Routes = [
         {path: 'instituicao', component: InstituicaolistComponent},
         {path: 'statusDemanda', component: StatusdemandalistComponent},
         {path: 'statusPessoa', component: StatuspessoalistComponent},
-        {path: 'tipoInstituicao', component: TipoinstituicaolistComponent}
+        {path: 'tipoInstituicao', component: TipoinstituicaolistComponent},
+        {path: 'periodo', component: PeriodolistComponent}
     ]}
 ];

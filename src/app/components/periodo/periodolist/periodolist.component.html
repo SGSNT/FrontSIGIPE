@@ -1,0 +1,58 @@
+<div class="container">
+    <h1>Períodos</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Período</th>
+          <th scope="col">
+            <button
+              type="button"
+              class="btn btn-primary btn-rounded"
+              mdbRipple
+              (click)="new()"
+            >
+              Novo
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (periodo of lista; track $index) {
+        <tr>
+          <th scope="row">{{ periodo.idPeriodo }}</th>
+          <td>{{ periodo.periodo }}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(periodo)">
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger btn-rounded"
+              mdbRipple
+              (click)="deleteById(periodo)"
+            >
+              Deletar
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #modalPeriodoDetalhe>
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modalRef.close()"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <app-periododetails [periodo]="periodoEdit" (retorno)="retornoDetalhe($event)"></app-periododetails>
+    </div>
+  </ng-template>
+  
