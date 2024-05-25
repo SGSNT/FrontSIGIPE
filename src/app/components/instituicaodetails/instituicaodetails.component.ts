@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class InstituicaodetailsComponent {
 
-  @Input("Instituicao") Instituicao: Instituicao = new Instituicao(0,'','','','','');
+  @Input("Instituicao") Instituicao: Instituicao = new Instituicao();
   @Output("return") return = new EventEmitter<any>();
   router = inject(ActivatedRoute);
   router2 = inject(Router);

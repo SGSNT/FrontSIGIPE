@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class InstituicaolistComponent {
 
   lista: Instituicao[]=[];
-  instituicaoEdit: Instituicao = new Instituicao(0,'','','','','');
+  instituicaoEdit: Instituicao = new Instituicao();
 
   modalService = inject(MdbModalService);
   @ViewChild("modalInstituicaoDetalhe") modalInstituicaoDetalhe!: TemplateRef<any>;
@@ -121,7 +121,7 @@ export class InstituicaolistComponent {
 
   save(){
 
-     this.instituicaoEdit = new Instituicao(0,'','','','','');
+     this.instituicaoEdit = new Instituicao();
      this.modalRef = this.modalService.open(this.modalInstituicaoDetalhe);
   }
   
