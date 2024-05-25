@@ -5,7 +5,7 @@ import { Instituicao } from "./instituicao";
 import { Statusdemanda } from "./statusdemanda";
 
 export class Demanda {
-    id!: number;
+    idDemanda!: number;
     quantidadeGrupo!: number;
     problema!: string;
     resultado!: string;

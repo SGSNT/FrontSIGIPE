@@ -3,7 +3,7 @@ import { Demandante } from "./demandante";
 import { Tipoinstituicao } from "./tipoinstituicao";
 
 export class Instituicao {
-    id!: number;
+    idInstituicao!: number;
     nome!: string;
     cidade!: string;
     cep!: string;
