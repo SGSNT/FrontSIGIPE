@@ -4,7 +4,7 @@ import { Demanda } from "./demanda";
 import { Professor } from "./professor";
 
 export class Curso {
-    id!: number;
+    idCurso!: number;
     nome!: string;
     demandas: Demanda[] = [];
     alunos: Aluno[] = [];
