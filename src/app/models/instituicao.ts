@@ -12,6 +12,5 @@ export class Instituicao {
     tipoInstituicao!: Tipoinstituicao;
     demandantes: Demandante[] = [];
     demandas: Demanda[] = [];
-
     constructor() {}
 }
