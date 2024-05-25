@@ -1,0 +1,44 @@
+body{
+    font-family: Aprova; 
+    font-weight: bold;
+}
+
+.form-cad {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+/* Estilo para os controles de formulário */
+.form-cad mdb-form-control {
+    margin-bottom: 20px;
+}
+
+/* Estilo para os inputs de texto */
+.form-cad input[type="text"] {
+    width: 300px;
+    height: 40px;
+    margin-left: 45px;
+    font-weight: 700;
+    background-color: white;
+    border: none;
+    text-align: start;
+}
+
+/* Estilo para o botão de salvar */
+.form-cad .btn-primary {
+    color: white;
+    font-weight: 700;
+    background-color: #28a745;
+    margin-left: 115px;
+    width: 150px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}

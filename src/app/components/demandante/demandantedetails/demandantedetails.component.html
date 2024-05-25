@@ -1,0 +1,28 @@
+<div class="form-cad">
+
+    <mdb-form-control>
+
+        <input mdbInput type="text" id="formControlLg" class="form-control form-control" [(ngModel)]="Demandante.nome"/>
+        <label class="form-label" for="formControlLg">Nome</label>
+
+    </mdb-form-control>
+
+    <mdb-form-control>
+
+        <input mdbInput type="text" id="formControlLg" class="form-control form-control" [(ngModel)]="Demandante.email"/>
+        <label class="form-label" for="formControlLg">Email</label>
+
+    </mdb-form-control>
+
+    <mdb-form-control>  
+
+        <input mdbInput type="text" id="formControlLg" class="form-control form-control" [(ngModel)]="Demandante.telefone"/>
+        <label class="form-label" for="formControlLg">Telefone</label>
+
+    </mdb-form-control>
+
+
+    <button (click)="save()" type="button" class="btn btn-primary" mdbRipple>Salvar</button>
+
+
+</div>

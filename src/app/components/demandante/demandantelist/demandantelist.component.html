@@ -1,0 +1,73 @@
+<div class="form-demandante">
+
+    <h1>Demandantes Cadastrados</h1>
+  
+    <div class="bt-save">
+  
+      <button (click)="save()" type="button" class="btn btn-primary btn-rounded" mdbRipple><i class="fas fa-plus"></i></button>
+  
+    </div>
+  
+    <table class="tabela-demandante">
+  
+      <thead>
+  
+          <tr>
+  
+              <th class="scope">Id</th>
+              <th class="scope">Nome</th>
+              <th class="scope">Email</th>
+              <th class="scope">Telefone</th>
+  
+          </tr>
+  
+      </thead>
+  
+      <tbody>
+  
+        @for (demandante of lista; track $index) {
+  
+          <tr>
+  
+            <th scope="row">{{demandante.idDemandante}}</th>
+            <td>{{demandante.nome}}</td>
+            <td>{{demandante.email}}</td>
+            <td>{{demandante.telefone}}</td>
+   
+            <td>
+  
+                <button class="btn btn-sucesses btn-rounded" mdbRipple (click)="update(demandante)"><i class="fas fa-pen"></i></button>
+                <button class="btn btn-sucesses btn-rounded" mdbRipple (click)="delete(demandante)"><i class="fas fa-trash-can"></i></button>
+  
+  
+            </td>
+  
+  
+            
+          </tr>
+  
+        }
+  
+      </tbody>
+  
+    </table>
+  
+  </div>
+  
+  <ng-template #modalDemandanteDetalhe>
+  
+     <div class="modal-header">
+  
+      <h5 class="modal-title" id="exampleModalLabel">Cadastrar Demandante</h5>
+  
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+  
+     </div>
+  
+     <div class="modal-body">
+  
+      <app-demandantedetails [Demandante]="demandanteEdit" (return)="returnDetail($event)"></app-demandantedetails>
+  
+     </div>
+  
+  </ng-template>
