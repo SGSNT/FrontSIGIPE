@@ -23,16 +23,16 @@ export class InstituicaoService {
     return this.http.put<string>(this.API + "/update/" + id, instituicao,{responseType: 'text' as 'json'});
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API + "/delete/" + id, {responseType: 'text' as 'json'});
+  deleteById(id: number): Observable<string>{
+    return this.http.delete<string>(this.API + "/deleteById/" + id, {responseType: 'text' as 'json'});
   }
 
   findById(id: number): Observable<Instituicao>{
     return this.http.get<Instituicao>(this.API + "/findById/" + id);
   }
 
-  listAll(): Observable<Instituicao[]>{
-    return this.http.get<Instituicao[]>(this.API + "/listAll");
+  findAll(): Observable<Instituicao[]>{
+    return this.http.get<Instituicao[]>(this.API + "/findAll");
     
   }
 

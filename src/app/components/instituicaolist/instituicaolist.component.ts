@@ -24,9 +24,10 @@ export class InstituicaolistComponent {
 
   instituicaoService = inject(InstituicaoService);
 
+
   constructor(){
 
-    this.listAll();
+    this.findAll();
 
     let novaInstituicao = history.state.novaInstituicao;
     let editInstituicao = history.state.editInstituicao;
@@ -48,9 +49,9 @@ export class InstituicaolistComponent {
     }
   }
  
-  listAll(){
+  findAll(){
 
-    this.instituicaoService.listAll().subscribe({
+    this.instituicaoService.findAll().subscribe({
       next:lista => {
         this.lista = lista;
       },
@@ -66,7 +67,7 @@ export class InstituicaolistComponent {
     });
   }
 
-  delete(instituicao: Instituicao){
+  deleteById(instituicao: Instituicao){
 
     Swal.fire({
 
@@ -80,7 +81,7 @@ export class InstituicaolistComponent {
 
       if(result.isConfirmed){
 
-        this.instituicaoService.delete(instituicao.idInstituicao).subscribe({
+        this.instituicaoService.deleteById(instituicao.idInstituicao).subscribe({
 
           next: mensagem => {
 
@@ -92,11 +93,13 @@ export class InstituicaolistComponent {
               confirmButtonText: 'OK',
             });
 
-            this.listAll();
+            this.findAll();
 
             },
 
             error: erro => {
+
+              console.log(erro);
 
               Swal.fire({
 
@@ -131,7 +134,7 @@ export class InstituicaolistComponent {
 
  returnDetail(instituicao: Instituicao){
 
-  this.listAll();
+  this.findAll();
   this.modalRef.close();
  }
 
