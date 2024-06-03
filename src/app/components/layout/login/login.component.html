@@ -1,41 +1,54 @@
-<main>
-  <div class="form-login">
+<div class="loginContainer">
 
-    <h4>Acesse a plataforma</h4>
+  <div class="loginFieldsMajorContainer">
+    <div class="loginFieldsMinorContainer">
+      <h1>Acesse a plataforma</h1>
 
-    <div mdbDropdown class="dropdown">
-      <a
-        class="btn btn-primary dropdown-toggle mb-3"
-        role="button"
-        id="dropdownMenuLink"
-        mdbDropdownToggle
-        aria-expanded="false"
+      <div class="loginInputs">
+        <mat-form-field>
+          <mat-label>Selecione sua categoria</mat-label>
+          <mat-select>
+            @for (categoria of categorias; track categorias) {
+              <mat-option [value]="categoria">{{categoria}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      
+        <mdb-form-control>
+          <input
+            mdbInput
+            type="text"
+            id="form-log"
+            class="form-control"
+            [(ngModel)]="login"
+          />
+          <label mdbLabel class="form-label" for="form-log">Login</label>
+        </mdb-form-control>
+      
+        <mdb-form-control>
+          <input
+            mdbInput
+            type="password"
+            id="form-pass"
+            class="form-control"
+            [(ngModel)]="senha"
+          />
+          <label mdbLabel class="form-label" for="form-pass">Senha</label>
+        </mdb-form-control>
+      </div>
+      
+      <button
+        type="button"
+        class="btn btn-primary btn-btn"
+        mdbRipple
+        (click)="logar()"
       >
-       Categoria
-      </a>
-      <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Coordenação de Extensão</a></li>
-        <li><a class="dropdown-item" href="#">Coordenação de Curso</a></li>
-        <li><a class="dropdown-item" href="#">Professor PIE</a></li>
-        <li><a class="dropdown-item" href="#">Aluno</a></li>
-      </ul>
+        Acessar
+      </button>
     </div>
-    
-    <mdb-form-control class="mb-3">
-      <input mdbInput type="text" id="form-log" class="form-control" [(ngModel)]="login"/>
-      <label mdbLabel class="form-label" for="form-log">Login</label>
-    </mdb-form-control>
-
-    <mdb-form-control>
-      <input mdbInput type="password" id="form-pass" class="form-control" [(ngModel)]="senha"/>
-      <label mdbLabel class="form-label" for="form-pass">Senha</label>
-    </mdb-form-control>
-
-    <button type="button" class="btn btn-primary btn-btn" mdbRipple (click)="logar()">Acessar</button>
-
   </div>
 
-  <div class="form-imagem">
-    <img src="../../../../assets/imagem/educação.png" alt="imageeducation">
+  <div class="loginImgContainer">
+    <img src="../../../../assets/imagem/mimi-thian-vdXMSiX-n6M-unsplash.jpg" alt="" class="loginImg">
   </div>
-</main>
+</div>

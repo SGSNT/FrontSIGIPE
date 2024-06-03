@@ -1,66 +1,43 @@
-main {
-    font-family: Aprova; 
-    font-weight: bold;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    
-   
- }
- 
- .form-login{
+.loginContainer{
+  display: flex;
+  background-color: #191A1A;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  overflow-x: hidden;
+}
+.loginFieldsMajorContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 65px;
+}
+.loginFieldsMinorContainer{
+  background-color: #232228;
+  padding: 45px;
+  border-radius: 20px;
+}
+.loginInputs{
+  margin: 90px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.loginImgContainer{
+  height: 100%;
+}
+.loginImg{
+  height: 100%;
+}
 
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: center;
-   width: 400px;
-   height: 450px;
-   margin-top: 10px;
-   margin-left: 90px;
-   border-radius: 10px;
-   box-shadow: -5px 5px 5px -5px rgba(0, 0, 0, 0.5), /* Sombra no lado esquerdo */
-              5px 5px 5px -5px rgba(0, 0, 0, 0.5),  /* Sombra no lado direito */
-              0 -5px 5px -5px rgba(0, 0, 0, 0.5);  
- }
-
-
- h4{
-  background-color: #28a745;
-  width: 400px;
-  height: 70px;
-  border-radius: 10px 10px 0 0;
-  color: white;
-  text-align: center;
-  padding-top: 20px;
- }
-
- .dropdown-toggle{
-  width: 200px;
-  height: 36px;
-  background-color: #28a745;
-  margin-top: 50px;
-
- }
-
-.form-control{
-
-  width: 200px;
-  height: 36px;
- 
-
- }
-
- .form-imagem img{
-  width: 913px;
-  height: 715px;
-  margin-left: 91px;
-  display: none;
- }
-
- .btn-btn{
-  background-color: #28a745;
-  width: 200px;
-  height: 36px;
-  margin-top: 55px;
- }
+h1{
+  font-size: 3rem;
+  font-family: Vanguard-CF-bold;
+}
+mat-form-field{
+  width: 100%;
+}
