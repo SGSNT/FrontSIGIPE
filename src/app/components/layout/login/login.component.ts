@@ -24,29 +24,36 @@ import Swal from 'sweetalert2';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  // Definindo uma array de strings para categorias de usuários
   categorias: string[] = [
     'Aluno',
     'Professor',
     'Coordenação de Curso',
-    'Coordenação de Extensão'
+    'Coordenação de Extensão',
   ];
 
+  // Declarando variáveis para login, senha e categoria do usuário
   login!: string;
   senha!: string;
   categoria!: string;
 
+  // Injetando o serviço de roteamento do Angular para poder fazer a navegação entre telas
   router = inject(Router);
 
+  // Função para realizar o login do usuário
   logar() {
-    if (this.categoria === undefined) {//verifica se existe categoria selecionada
+    // Verifica se a categoria não foi selecionada
+    if (this.categoria === undefined) {
+      // Exibe um alerta informando que a categoria não foi selecionada
       Swal.fire({
         title: 'Sem categoria',
         text: 'Selecione uma categoria para prosseguir',
         icon: 'error',
       });
     } else {
-      if (this.login == 'admin' && this.senha == 'admin') {//verifica se login e senha estão certos
-        //aninhamento de IFs para verificar qual a categoria selecionada e direcionar para a página certa
+      // Verifica se o login e a senha são 'admin'
+      if (this.login == 'admin' && this.senha == 'admin') {
+        // Verifica qual categoria foi selecionada e navega para a página correspondente
         if (this.categoria === this.categorias[0]) {
           this.router.navigate(['aluno/demandas-disponiveis']);
         } else if (this.categoria === this.categorias[1]) {
@@ -57,12 +64,21 @@ export class LoginComponent {
           this.router.navigate(['coordenacao-extensao/dashboard']);
         }
       } else {
+        // Exibe um alerta informando que o login ou senha são inválidos
         Swal.fire({
           title: 'Login ou senha inválidos!',
-          text: 'Tente novamente para processguir',
+          text: 'Tente novamente para prosseguir',
           icon: 'error',
         });
       }
     }
+  }
+  // Função para mudar o foco para um elemento específico com base no ID
+  changeFocusTo(id: string) {
+    // Obtém o elemento pelo ID fornecido como parâmetro
+    let next = document.getElementById(id);
+
+    // Se o elemento for encontrado, define o foco nele
+    next?.focus();
   }
 }

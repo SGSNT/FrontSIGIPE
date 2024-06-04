@@ -7,7 +7,7 @@
       <div class="loginInputs">
         <mat-form-field>
           <mat-label>Selecione sua categoria</mat-label>
-          <mat-select id="select-categoria" [(ngModel)]="categoria">
+          <mat-select id="selectCategoria" (keyup.enter)="changeFocusTo('inputLogin')" [(ngModel)]="categoria">
             @for (categoria of categorias; track categorias) {
               <mat-option [value]="categoria">{{categoria}}</mat-option>
             }
@@ -18,9 +18,10 @@
           <input
             mdbInput
             type="text"
-            id="form-log"
+            id="inputLogin"
             class="form-control"
             [(ngModel)]="login"
+            (keyup.enter)="changeFocusTo('inputSenha')"
           />
           <label mdbLabel class="form-label" for="form-log">Login</label>
         </mdb-form-control>
@@ -29,7 +30,7 @@
           <input
             mdbInput
             type="password"
-            id="form-pass"
+            id="inputSenha"
             class="form-control"
             [(ngModel)]="senha"
             (keyup.enter)="logar()"
