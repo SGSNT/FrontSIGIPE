@@ -1,6 +1,9 @@
+@import '../../../../../assets/styles/cores.scss';
+
 header{
     height: 64px;
     padding: 0;
+    background-color: $pretoUniamerica !important;
 }
 header>div.container{
     justify-content: flex-end;
