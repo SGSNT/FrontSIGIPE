@@ -1,6 +1,8 @@
+@import '../../../../assets/styles/cores.scss';
+
 .loginContainer{
   display: flex;
-  background-color: #191A1A;
+  background-color: $pretoUniamerica;
   height: 100vh;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +18,7 @@
   padding: 0 65px;
 }
 .loginFieldsMinorContainer{
-  background-color: #232228;
+  background-color: $cinzaUniamerica;
   padding: 45px;
   border-radius: 20px;
 }
@@ -33,11 +35,20 @@
 .loginImg{
   height: 100%;
 }
+.btnLogin{
+  background-color: $verdeUniamerica;
+  color: #191A1A;
+  text-transform: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
 
 h1{
   font-size: 3rem;
   font-family: Vanguard-CF-bold;
+  color: $verdeUniamerica;
 }
 mat-form-field{
   width: 100%;
+  
 }
