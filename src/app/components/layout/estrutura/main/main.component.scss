@@ -1,9 +1,7 @@
 main{
     height: calc(100vh - 64px);
-    min-width: calc(100vw - 250px);
+    min-width: calc(100vw - 100px);
     overflow-y: scroll;
-
-
     
-    padding: 25px 20px;
+    padding: 40px;
 }

@@ -1,0 +1,14 @@
+// @import "../../.././../../styles.scss";
+
+.barraDeBusca {
+  height: 60px;
+  width: 100%;
+  background-color: red;
+}
+.container{
+    padding: 0;
+    height: 100%;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+}

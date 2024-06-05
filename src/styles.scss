@@ -23,3 +23,36 @@ body {
 body {
   margin: 0;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Vanguard-CF-bold !important;
+  margin: 0 !important;
+  line-height: 120% !important;
+}
+p {
+  margin: 0 !important;
+  line-height: 120% !important;
+}
+h1{
+  font-size: 3rem !important;
+}
+h2{
+  font-size: 2.5rem !important;
+}
+h3{
+  font-size: 2.062rem !important;
+}
+h4{
+  font-size: 1.75rem !important;
+}
+h5{
+  font-size: 1.438rem !important;
+}
+h6{
+  font-size: 1.188rem !important;
+}
