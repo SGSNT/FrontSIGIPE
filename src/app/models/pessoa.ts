@@ -10,5 +10,6 @@ export class Pessoa {
   telefone!: number;
   funcao!: Funcao;
   status!: Statuspessoa;
+  
   constructor() {}
 }

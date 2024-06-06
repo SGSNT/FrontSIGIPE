@@ -5,6 +5,9 @@ import { DemandasdisponiveisalunoComponent } from './components/aluno/demanda/de
 import { DemandasdisponiveiscoordenacaocursoComponent } from './components/coordenacaocurso/demanda/demandasdisponiveiscoordenacaocurso/demandasdisponiveiscoordenacaocurso.component';
 import { DashboardComponent } from './components/coordenacaoextensao/dashboard/dashboard/dashboard.component';
 import { DemandasdisponiveisprofessorComponent } from './components/professor/demanda/demandasdisponiveisprofessor/demandasdisponiveisprofessor.component';
+import { GrupoatualComponent } from './components/aluno/grupo/grupoatual/grupoatual.component';
+import { CriargrupoComponent } from './components/aluno/grupo/criargrupo/criargrupo.component';
+import { Grupo } from './models/grupo';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
