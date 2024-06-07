@@ -1,0 +1,25 @@
+
+.row{
+    display: flex;
+    margin-left: 14.5vh;
+}
+.card{
+    height: 25vh;
+    width: 35vh;
+    text-align: center;
+    background-color: rgb(2, 173, 116);
+    .card-body{
+        color: #191A1A;
+        text-transform: none;
+        font-size: 1rem;
+        font-weight: bold;
+        h1{
+            font-size: 3rem;
+            font-family: Vanguard-CF-bold;
+          }
+    }
+}
+.col-sm-3{
+    margin-top: 1rem;
+    
+}
