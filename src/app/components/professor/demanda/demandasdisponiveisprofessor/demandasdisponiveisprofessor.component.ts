@@ -64,10 +64,9 @@ export class DemandasdisponiveisprofessorComponent {
   constructor() {
     this.dados = new Dados();
     this.user = new Professor();
+    this.user = this.dados.professor[Math.floor(Math.random() * 40) + 1];
     this.mockaDados();
     console.log(this.dados);
-    this.relacionaDados();
-    this.user = this.dados.professor[Math.floor(Math.random() * 30) + 1];
   }
 
   mockaDados() {
@@ -349,6 +348,9 @@ export class DemandasdisponiveisprofessorComponent {
       this.dados.coordenadoExtensao.push(coordenadorExtensaoExemplo);
       coordenadorExtensaoExemplo = new Coordenadorextensao(); // Nova instância para a próxima iteração
     }
+
+    
+    this.relacionaDados();
   }
   relacionaDados() {
     this.dados.aluno.forEach((al, index) => {

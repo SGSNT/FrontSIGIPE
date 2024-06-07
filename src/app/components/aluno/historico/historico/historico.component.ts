@@ -29,8 +29,9 @@ export class HistoricoComponent {
   constructor() {
     this.dados = new Dados();
     this.user = new Aluno();
-    this.mockaDados();
     this.user = this.dados.aluno[Math.floor(Math.random() * 80) + 1];
+    this.mockaDados();
+    console.log(this.dados);
   }
 
   mockaDados() {
@@ -312,5 +313,114 @@ export class HistoricoComponent {
       this.dados.coordenadoExtensao.push(coordenadorExtensaoExemplo);
       coordenadorExtensaoExemplo = new Coordenadorextensao(); // Nova instância para a próxima iteração
     }
+
+    
+    this.relacionaDados();
+  }
+  relacionaDados() {
+    this.dados.aluno.forEach((al, index) => {
+      al.funcao = this.dados.funcao[0];
+      this.dados.funcao[0].pessoas.push(al);
+
+      al.status = this.dados.statusPessoa[0];
+      this.dados.statusPessoa[0].pessoas.push(al);
+
+      al.curso = this.dados.curso[Math.floor(index / 10)];
+      this.dados.curso[Math.floor(index / 10)].alunos.push(al);
+
+      al.periodo = this.dados.periodo[Math.floor(index / 8)];
+      this.dados.periodo[Math.floor(index / 8)].alunos.push(al);
+
+      al.grupos.push(this.dados.grupo[Math.floor(index / 5)]);
+      this.dados.grupo[Math.floor(index / 5)].alunos.push(al);
+    });
+
+    this.dados.professor.forEach((pr, index) => {
+      pr.funcao = this.dados.funcao[1];
+      this.dados.funcao[1].pessoas.push(pr);
+
+      pr.status = this.dados.statusPessoa[0];
+      this.dados.statusPessoa[0].pessoas.push(pr);
+
+      pr.curso = this.dados.curso[Math.floor(index / 5)];
+      this.dados.curso[Math.floor(index / 5)].professores.push(pr);
+
+      pr.periodo = this.dados.periodo[Math.floor(index / 4)];
+      this.dados.periodo[Math.floor(index / 4)].professores.push(pr);
+    });
+
+    this.dados.coordenadoCurso.forEach((cc, index) => {
+      cc.funcao = this.dados.funcao[2];
+      this.dados.funcao[2].pessoas.push(cc);
+
+      cc.status = this.dados.statusPessoa[0];
+      this.dados.statusPessoa[0].pessoas.push(cc);
+
+      cc.curso = this.dados.curso[Math.floor(index)];
+      this.dados.curso[Math.floor(index)].coordenadores.push(cc);
+    });
+
+    this.dados.coordenadoExtensao.forEach((ce, index) => {
+      ce.funcao = this.dados.funcao[3];
+      this.dados.funcao[3].pessoas.push(ce);
+
+      ce.status = this.dados.statusPessoa[0];
+      this.dados.statusPessoa[0].pessoas.push(ce);
+    });
+
+    this.dados.instituicao.forEach((i, index) => {
+      i.demandantes.push(this.dados.demandante[2 * index]);
+      i.demandantes.push(this.dados.demandante[2 * index + 1]);
+
+      i.demandas.push(this.dados.demanda[2 * index]);
+      i.demandas.push(this.dados.demanda[2 * index + 1]);
+
+      this.dados.demanda[2 * index].instituicao = i;
+      this.dados.demanda[2 * index + 1].instituicao = i;
+
+      this.dados.demanda[2 * index].demandante =
+        this.dados.demandante[2 * index];
+      this.dados.demanda[2 * index + 1].demandante =
+        this.dados.demandante[2 * index + 1];
+
+      let indexTipoInstituicao = Math.floor(Math.random() * 5);
+      i.tipoInstituicao = this.dados.tipoInstituicao[1];
+      this.dados.tipoInstituicao[indexTipoInstituicao].instituicoes.push(i);
+    });
+
+    this.dados.curso.forEach((c, index) => {
+      if (index < 2) {
+        c.demandas.push(this.dados.demanda[3 * index]);
+        c.demandas.push(this.dados.demanda[3 * index + 1]);
+        c.demandas.push(this.dados.demanda[3 * index + 2]);
+
+        this.dados.demanda[3 * index].cursos.push(c);
+        this.dados.demanda[3 * index + 1].cursos.push(c);
+        this.dados.demanda[3 * index + 2].cursos.push(c);
+      } else {
+        c.demandas.push(this.dados.demanda[4 * (index - 2) + 6]);
+        c.demandas.push(this.dados.demanda[4 * (index - 2) + 7]);
+        c.demandas.push(this.dados.demanda[4 * (index - 2) + 8]);
+        c.demandas.push(this.dados.demanda[4 * (index - 2) + 9]);
+
+        this.dados.demanda[4 * (index - 2) + 6].cursos.push(c);
+        this.dados.demanda[4 * (index - 2) + 7].cursos.push(c);
+        this.dados.demanda[4 * (index - 2) + 8].cursos.push(c);
+        this.dados.demanda[4 * (index - 2) + 9].cursos.push(c);
+      }
+    });
+
+    this.dados.demanda.forEach((d, index) => {
+      d.status = this.dados.statusDemanda[4];
+      this.dados.statusDemanda[4].demandas.push(d);
+
+      if (index < 16) {
+        d.grupos.push(this.dados.grupo[index]);
+        this.dados.grupo[index].demanda = d;
+      } else {
+        d.grupos.push(this.dados.grupo[index - 16]);
+        this.dados.grupo[index - 16].demanda = d;
+      }
+    });
   }
 }

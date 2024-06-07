@@ -12,9 +12,4 @@ import { Demanda } from '../../../models/demanda';
 export class CardgridComponent {
   @Input("listaDemandas")
   listaDemandas: Demanda[] = [];
-
-  constructor(){
-    console.log("card grid");
-    console.log(this.listaDemandas);
-  }
 }
