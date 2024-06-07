@@ -16,10 +16,12 @@ export const routes: Routes = [
         {path: 'demandas-disponiveis', component: DemandasdisponiveisprofessorComponent}
     ]},
     {path: 'aluno', component: FrameComponent, children: [
-        {path: 'demandas-disponiveis', component: DemandasdisponiveisalunoComponent}
+        {path: 'demandas-disponiveis', component: DemandasdisponiveisalunoComponent},
+        {path: 'grupoatual',component: GrupoatualComponent},
+        {path: 'criargrupo',component: CriargrupoComponent}
     ]},
     {path: 'coordenacao-extensao', component: FrameComponent, children: [
-        {path: 'dashboard', component: DashboardComponent}
+        {path: 'dashboard', component: DashboardComponent},
     ]},
     {path: 'coordenacao-curso', component: FrameComponent, children: [
         {path: 'demandas-disponiveis', component:DemandasdisponiveiscoordenacaocursoComponent}
