@@ -2,6 +2,8 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 @import "mdb-angular-ui-kit/assets/scss/mdb.scss";
 
+@import './assets/styles/cores.scss';
+
 @font-face {
   font-family: Vanguard-CF-bold;
   src: url("assets/fonts/Vanguard-CF-Bold.otf");
@@ -33,10 +35,12 @@ h6 {
   font-family: Vanguard-CF-bold !important;
   margin: 0 !important;
   line-height: 120% !important;
+  color: $verdeUniamerica !important;
 }
 p {
   margin: 0 !important;
   line-height: 120% !important;
+  color: #fff !important;
 }
 h1{
   font-size: 3rem !important;

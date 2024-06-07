@@ -1,3 +1,5 @@
 <div class="container">
-    <app-card></app-card>
+    @for (demanda of listaDemandas; track $index) {
+        <app-card [demanda]="demanda"></app-card>
+    }
 </div>

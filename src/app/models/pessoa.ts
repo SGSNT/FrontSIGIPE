@@ -5,9 +5,9 @@ export class Pessoa {
   idPessoa!: number;
   nome!: string;
   login!: string;
-  senha!: number;
-  cpf!: number;
-  telefone!: number;
+  senha!: string;
+  cpf!: string;
+  telefone!: string;
   funcao!: Funcao;
   status!: Statuspessoa;
   constructor() {}

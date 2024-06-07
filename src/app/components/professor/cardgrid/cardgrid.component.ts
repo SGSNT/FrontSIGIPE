@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { CardComponent } from '../card/card.component';
+import { Demanda } from '../../../models/demanda';
 
 @Component({
   selector: 'app-cardgrid',
@@ -9,5 +10,11 @@ import { CardComponent } from '../card/card.component';
   styleUrl: './cardgrid.component.scss'
 })
 export class CardgridComponent {
+  @Input("listaDemandas")
+  listaDemandas: Demanda[] = [];
 
+  constructor(){
+    console.log("card grid");
+    console.log(this.listaDemandas);
+  }
 }
