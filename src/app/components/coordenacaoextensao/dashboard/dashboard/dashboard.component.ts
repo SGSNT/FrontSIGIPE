@@ -423,4 +423,24 @@ export class DashboardComponent {
       }
     });
   }
+  calculaDemandaParaAnalise(): number{
+    return this.dados.demanda.filter((d)=>{
+      return d.status.nome === "Para revisão";
+    }).length;
+  }
+  calculaDemandaEncaminhada(): number{
+    return this.dados.demanda.filter((d)=>{
+      return d.status.nome === "Encaminhada para curso";
+    }).length;
+  }
+  calculaDemandaNegada(): number{
+    return this.dados.demanda.filter((d)=>{
+      return d.status.nome === "Negada";
+    }).length;
+  }
+  calculaDemandaApta(): number{
+    return this.dados.demanda.filter((d)=>{
+      return d.status.nome === "Apta";
+    }).length;
+  }
 }

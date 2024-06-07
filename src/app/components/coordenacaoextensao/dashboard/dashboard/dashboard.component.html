@@ -1,65 +1,36 @@
 <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Todas as Demandas</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Novas</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Para análise</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Encaminhadas para os cursos</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Negadas</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Aptas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">0</h1>
-            <p class="card-text">Iniciadas</p>
-          </div>
-        </div>
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-text">Todas as Demandas</h4>
+      <h1 class="card-title">{{ dados.demanda.length }}</h1>
     </div>
   </div>
-  
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-text">Para análise</h4>
+      <h1 class="card-title">{{ calculaDemandaParaAnalise() }}</h1>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-text">Encaminhadas para os cursos</h4>
+      <h1 class="card-title">{{ calculaDemandaEncaminhada() }}</h1>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-text">Negadas</h4>
+      <h1 class="card-title">{{ calculaDemandaNegada() }}</h1>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-text">Aptas</h4>
+      <h1 class="card-title">{{ calculaDemandaApta() }}</h1>
+    </div>
+  </div>
+</div>

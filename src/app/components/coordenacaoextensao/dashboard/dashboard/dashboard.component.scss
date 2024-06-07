@@ -1,25 +1,23 @@
+@import '../../../../../assets/styles/cores.scss';
 
-.row{
+.container{
+    padding: 0;
     display: flex;
-    margin-left: 14.5vh;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
 }
-.card{
-    height: 25vh;
-    width: 35vh;
-    text-align: center;
-    background-color: rgb(2, 173, 116);
-    .card-body{
-        color: #191A1A;
-        text-transform: none;
-        font-size: 1rem;
-        font-weight: bold;
-        h1{
-            font-size: 3rem;
-            font-family: Vanguard-CF-bold;
-          }
-    }
+
+.card {
+  text-align: center;
+  background-color: #fff;
+  width: 350px;
 }
-.col-sm-3{
-    margin-top: 1rem;
-    
+h1{
+    font-size: 10rem !important;
+}
+h4{
+    font-family: Aprova !important;
+    font-weight: bold;
+    color: $pretoUniamerica !important;
 }
