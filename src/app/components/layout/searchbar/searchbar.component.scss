@@ -1,15 +1,16 @@
+@import '../../../../assets/styles/cores.scss';
+
 #inputBusca{
-    
-    width:50rem;
+    width: 850px;
     margin: 10px;
 }
 #BarraBuscar{
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
-.Combobox{
-    border-radius: 10px;
-    height: 40px;
-    width: 100px;
-    margin: 5px;
+button{
+    background-color: $amareloUniamerica;
+    color: $pretoUniamerica;
 }

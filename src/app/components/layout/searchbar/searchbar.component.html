@@ -1,17 +1,57 @@
 <div id="BarraBuscar">
-    <mdb-form-control id="inputBusca">
-      <input mdbInput type="text" id="typeText" class="form-control" />
-      <label mdbLabel class="form-label" for="typeText">Buscar</label>
-    </mdb-form-control>
-    <select name="Selec1" id="select1" class="Combobox">
-      <option value="TESTE">asdasd</option>
-    </select>
-    <select name="Selec2" id="select2" class="Combobox">
-      <option value="TESTE">asdasd</option>
-      <option value="TESTE2">asdasd</option>
-    </select>
-    <select name="Selec3" id="select3" class="Combobox">
-      <option value="TESTE">asdasd</option>
-    </select>
+  <mdb-form-control id="inputBusca" class="form-white">
+    <input mdbInput type="text" id="typeText" class="form-control" />
+    <label mdbLabel class="form-label" for="typeText">Buscar</label>
+  </mdb-form-control>
+
+  <div mdbDropdown class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      aria-expanded="false"
+      mdbDropdownToggle
+    >
+      Filtro 1
+    </button>
+    <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
   </div>
   
+  <div mdbDropdown class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      aria-expanded="false"
+      mdbDropdownToggle
+    >
+      Filtro 2
+    </button>
+    <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+  
+  <div mdbDropdown class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      aria-expanded="false"
+      mdbDropdownToggle
+    >
+      Filtro 3
+    </button>
+    <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+</div>

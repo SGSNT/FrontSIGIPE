@@ -25,11 +25,12 @@ import { Professor } from '../../../../models/professor';
 import { Funcao } from '../../../../models/funcao';
 import { Periodo } from '../../../../models/periodo';
 import { Statuspessoa } from '../../../../models/statuspessoa';
+import { SearchbarComponent } from '../../../layout/searchbar/searchbar.component';
 
 @Component({
   selector: 'app-demandasdisponiveisprofessor',
   standalone: true,
-  imports: [CardgridComponent],
+  imports: [CardgridComponent, SearchbarComponent],
   templateUrl: './demandasdisponiveisprofessor.component.html',
   styleUrl: './demandasdisponiveisprofessor.component.scss',
 })
