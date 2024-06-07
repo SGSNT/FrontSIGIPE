@@ -16,6 +16,8 @@ export class Demanda {
     demandante!: Demandante;
     status!: Statusdemanda;
     cursos: Curso[] = [];
+    soma!: number;
 
-    constructor(){}
+    constructor(){
+    }
 }

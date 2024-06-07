@@ -16,7 +16,7 @@ export const routes: Routes = [
         {path: 'demandas-disponiveis', component: DemandasdisponiveisalunoComponent}
     ]},
     {path: 'coordenacao-extensao', component: FrameComponent, children: [
-        {path: 'dashboard', component: DashboardComponent}
+        {path: 'dashboard', component: DashboardComponent},
     ]},
     {path: 'coordenacao-curso', component: FrameComponent, children: [
         {path: 'demandas-disponiveis', component:DemandasdisponiveiscoordenacaocursoComponent}
