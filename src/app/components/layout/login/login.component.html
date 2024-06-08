@@ -1,5 +1,4 @@
 <div class="loginContainer">
-
   <div class="loginFieldsMajorContainer">
     <div class="loginFieldsMinorContainer">
       <h1>Acesse a plataforma</h1>
@@ -8,49 +7,27 @@
         <mat-form-field>
           <mat-label>Selecione sua categoria</mat-label>
           <mat-select id="selectCategoria" (keyup.enter)="changeFocusTo('inputLogin')" [(ngModel)]="categoria">
-            @for (categoria of categorias; track categorias) {
-              <mat-option [value]="categoria">{{categoria}}</mat-option>
-            }
+            <mat-option *ngFor="let cat of categorias" [value]="cat.value">{{cat.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
-      
+
         <mdb-form-control class="form-white">
-          <input
-            mdbInput
-            type="text"
-            id="inputLogin"
-            class="form-control"
-            [(ngModel)]="login"
-            (keyup.enter)="changeFocusTo('inputSenha')"
-          />
+          <input mdbInput type="text" id="inputLogin" class="form-control" [(ngModel)]="login.username" (keyup.enter)="changeFocusTo('inputSenha')" />
           <label mdbLabel class="form-label" for="form-log">Login</label>
         </mdb-form-control>
-      
+
         <mdb-form-control class="form-white">
-          <input
-            mdbInput
-            type="password"
-            id="inputSenha"
-            class="form-control"
-            [(ngModel)]="senha"
-            (keyup.enter)="logar()"
-          />
+          <input mdbInput type="password" id="inputSenha" class="form-control" [(ngModel)]="login.password" (keyup.enter)="logar()" />
           <label mdbLabel class="form-label" for="form-pass">Senha</label>
         </mdb-form-control>
       </div>
-      
-      <button
-        type="button"
-        class="btn btnLogin btn-btn"
-        mdbRipple
-        (click)="logar()"
-      >
-        Acessar
-      </button>
+
+      <button type="button" class="btn btnLogin btn-btn" mdbRipple (click)="logar()">Acessar</button>
+
     </div>
   </div>
 
   <div class="loginImgContainer">
-    <img src="../../../../assets/imagem/mimi-thian-vdXMSiX-n6M-unsplash.jpg" alt="" class="loginImg">
+    <img src="../../../../assets/imagem/mimi-thian-vdXMSiX-n6M-unsplash.jpg" alt="" class="loginImg" />
   </div>
 </div>

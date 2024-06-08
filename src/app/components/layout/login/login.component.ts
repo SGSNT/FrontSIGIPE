@@ -6,12 +6,15 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import Swal from 'sweetalert2';
+import { Login } from '../../../auth/login';
+import { LoginService } from '../../../auth/login.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
     MdbFormsModule,
     FormsModule,
     MdbDropdownModule,
@@ -21,58 +24,51 @@ import Swal from 'sweetalert2';
     FormsModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  // Definindo uma array de strings para categorias de usuários
-  categorias: string[] = [
-    'Aluno',
-    'Professor',
-    'Coordenação de Curso',
-    'Coordenação de Extensão',
-  ];
-
-  // Declarando variáveis para login, senha e categoria do usuário
-  login!: string;
-  senha!: string;
-  categoria!: string;
-
+ 
+ login: Login = new Login;
+ loginService = inject(LoginService);
   // Injetando o serviço de roteamento do Angular para poder fazer a navegação entre telas
   router = inject(Router);
+  
+  categoria: string = '';
+
+  categorias: { value: string, viewValue: string }[] = [
+    { value: 'coordenador_extensao', viewValue: 'Coordenador de Extensão' },
+    { value: 'coordenador_curso', viewValue: 'Coordenador de Curso' },
+    { value: 'professor', viewValue: 'Professor' },
+    { value: 'aluno', viewValue: 'Aluno' }
+  ];
 
   // Função para realizar o login do usuário
   logar() {
-    // Verifica se a categoria não foi selecionada
-    if (this.categoria === undefined) {
-      // Exibe um alerta informando que a categoria não foi selecionada
-      Swal.fire({
-        title: 'Sem categoria',
-        text: 'Selecione uma categoria para prosseguir',
-        icon: 'error',
-      });
-    } else {
-      // Verifica se o login e a senha são 'admin'
-      if (this.login == 'admin' && this.senha == 'admin') {
-        // Verifica qual categoria foi selecionada e navega para a página correspondente
-        if (this.categoria === this.categorias[0]) {
-          this.router.navigate(['aluno/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[1]) {
-          this.router.navigate(['professor/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[2]) {
-          this.router.navigate(['coordenacao-curso/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[3]) {
-          this.router.navigate(['coordenacao-extensao/dashboard']);
-        }
-      } else {
-        // Exibe um alerta informando que o login ou senha são inválidos
-        Swal.fire({
-          title: 'Login ou senha inválidos!',
-          text: 'Tente novamente para prosseguir',
-          icon: 'error',
-        });
+    console.log('Método logar() chamado'); // Adicionando console.log() para verificar se o método está sendo chamado
+
+    this.loginService.logar(this.login).subscribe({
+      next: token => {
+        console.log(token);
+
+        if(token)
+          this.loginService.addToken(token);
+
+        const userRoutes: {[key: string]: string} = {
+          coordenador_extensao: '/coordenadordeextensao/dashboard',
+          coordenador_curso: '/coordenadordecurso/demandas-disponiveis',
+          professor: '/professor/demandas-disponiveis',
+          aluno: '/aluno/demandas-disponiveis'
+        };
+
+        const userType = userRoutes[this.login.username] || '/login';
+        this.router.navigate([userType]);
+      },
+      error: erro => {
+        console.error(erro);
       }
-    }
+    });
   }
+
   // Função para mudar o foco para um elemento específico com base no ID
   changeFocusTo(id: string) {
     // Obtém o elemento pelo ID fornecido como parâmetro

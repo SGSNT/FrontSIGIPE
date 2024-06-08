@@ -22,8 +22,10 @@
     "@angular/router": "^17.3.0",
     "@fortawesome/fontawesome-free": "^6.0.0",
     "chart.js": "^3.1.1",
+    "jwt-decode": "^4.0.0",
     "mdb-angular-ui-kit": "^6.0.0",
     "rxjs": "~7.8.0",
+    "save": "^2.9.0",
     "sweetalert2": "^11.11.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

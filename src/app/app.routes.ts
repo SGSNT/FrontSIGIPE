@@ -5,6 +5,7 @@ import { DemandasdisponiveisalunoComponent } from './components/aluno/demanda/de
 import { DemandasdisponiveiscoordenacaocursoComponent } from './components/coordenacaocurso/demanda/demandasdisponiveiscoordenacaocurso/demandasdisponiveiscoordenacaocurso.component';
 import { DashboardComponent } from './components/coordenacaoextensao/dashboard/dashboard/dashboard.component';
 import { DemandasdisponiveisprofessorComponent } from './components/professor/demanda/demandasdisponiveisprofessor/demandasdisponiveisprofessor.component';
+import { Login } from './auth/login';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
