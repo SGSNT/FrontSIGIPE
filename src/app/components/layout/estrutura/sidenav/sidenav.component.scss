@@ -1,22 +1,47 @@
-@import '../../../../../assets/styles/cores.scss';
+@import "../../../../../assets/styles/cores.scss";
 
+nav {
+  height: calc(100vh - 64px);
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 0;
 
-nav{
-    height: calc(100vh - 64px);
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-
-    background-color: $pretoUniamerica;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 12px 0px, rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+  background-color: $pretoUniamerica;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 4px 12px 0px,
+    rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
 }
-.navBtnGrp{
-    width: 250px;
+
+.sideNavBtns,
+.sideNavMainBtns,
+.sideNavBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
-button{
-    width: 100%;
-    border: none;
+
+.sideNavBtns {
+  height: 100%;
+  justify-content: space-between;
+}
+.sideNavBtn{
+  padding: 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.sideNavBtn:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+}
+.sairBtn svg{
+  position: relative;
+  left: 4%;
 }
