@@ -61,12 +61,13 @@ export class DemandasdisponiveisprofessorComponent {
 
   dados!: Dados;
   user!: Professor;
+  listaDemandas: Demanda[] = [];
 
   constructor() {
     this.dados = new Dados();
+    this.mockaDados();
     this.user = new Professor();
     this.user = this.dados.professor[Math.floor(Math.random() * 40) + 1];
-    this.mockaDados();
     console.log(this.dados);
   }
 
@@ -457,6 +458,11 @@ export class DemandasdisponiveisprofessorComponent {
         d.grupos.push(this.dados.grupo[index - 16]);
         this.dados.grupo[index - 16].demanda = d;
       }
+    });
+  }
+  filtraDemandas(): Demanda[]{
+    return this.dados.demanda.filter((d)=>{
+      return d.cursos.includes(this.user.curso);
     });
   }
 }

@@ -1,5 +1,5 @@
 <div class="container">
     <app-searchbar></app-searchbar>
     <h1>Demandas disponíveis</h1>
-    <app-cardgrid [listaDemandas]="dados.demanda" ></app-cardgrid>
+    <app-cardgrid [listaDemandas]="filtraDemandas()"  ></app-cardgrid>
 </div>

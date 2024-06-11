@@ -1,15 +1,16 @@
 import { Component, Input, input } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { Demanda } from '../../../models/demanda';
+import { Pessoa } from '../../../models/pessoa';
 
 @Component({
   selector: 'app-cardgrid',
   standalone: true,
   imports: [CardComponent],
   templateUrl: './cardgrid.component.html',
-  styleUrl: './cardgrid.component.scss'
+  styleUrl: './cardgrid.component.scss',
 })
 export class CardgridComponent {
-  @Input("listaDemandas")
+  @Input('listaDemandas')
   listaDemandas: Demanda[] = [];
 }

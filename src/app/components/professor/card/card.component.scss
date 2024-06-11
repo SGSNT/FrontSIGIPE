@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/cores.scss';
+
 .container{
     background-color: #6c6b6f;
     width: 300px;
@@ -8,4 +10,10 @@
     justify-content: center;
 
     border-radius: 12px;
+}
+.container:hover{
+    background-color: #B6B5B7;
+}
+.container:hover p{
+    color: $pretoUniamerica !important;
 }

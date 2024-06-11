@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Demanda } from '../../../models/demanda';
+import { Pessoa } from '../../../models/pessoa';
 
 @Component({
   selector: 'app-card',
