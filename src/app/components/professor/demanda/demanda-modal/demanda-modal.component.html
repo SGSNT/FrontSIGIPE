@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="main">
+    <div class="cabecalho">
+      <div class="coluna">
+        <div class="cabecalhoItem">
+            <h3>Nome da Instuição</h3>
+            <p>{{demanda.instituicao.nome}}</p>
+            <p>{{demanda.instituicao.cidade}}</p>
+        </div>
+        <div class="cabecalhoItem">
+          @for (curso of demanda.cursos; track $index) {
+            <p><span>{{curso.nome}}</span></p>
+          }
+        </div>
+      </div>
+      <div class="coluna">
+        <div class="cabecalhoItem">
+            <h3>Nome do Demandante</h3>
+            <p>{{demanda.demandante.nome}}</p>
+            <p>{{demanda.demandante.telefone}}</p>
+        </div>
+        <div class="cabecalhoItem">
+            <h4>Quantidade de Grupos</h4>
+            <p>{{demanda.grupos.length}}</p>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="paragrafoDemanda">
+      <h4>Problema</h4>
+      <p>{{demanda.problema}}</p>
+    </div>
+    <div class="paragrafoDemanda">
+      <h4>Resultados esperados</h4>
+      <p>{{demanda.resultado}}</p>
+    </div>
+    <div class="paragrafoDemanda">
+      <h4>Impacto</h4>
+      <p>{{demanda.impacto}}</p>
+    </div>
+    <div class="paragrafoDemanda">
+      <h4>Expectativa de prazo</h4>
+      <p>{{demanda.prazo}}</p>
+    </div>
+  </div>
+  <div class="aside">
+    <h4></h4>
+    @for (grupo of demanda.grupos; track $index) {
+    <h3>Grupo {{grupo.idGrupo}}</h3>
+    <div class="grupoDemanda">
+      @for (aluno of grupo.alunos; track $index) {
+      <div class="imgAluno"></div>
+      <p>{{ aluno.nome }}</p>
+      }
+    </div>
+    }
+    <button>Solicitar negação da demanda</button>
+  </div>
+</div>

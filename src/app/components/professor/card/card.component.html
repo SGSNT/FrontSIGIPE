@@ -1,4 +1,19 @@
-<div class="container">
-    <h3>{{demanda.idDemanda}}</h3>
-    <p>{{demanda.problema}}</p>
+<div class="container" (click)="abreModal()">
+  <h3>{{ demanda.idDemanda }}</h3>
+  <p>{{ demanda.problema }}</p>
 </div>
+
+<ng-template #modalDemanda>
+  <div class="modal-header ">
+    <h5 class="modal-title" id="exampleModalLabel">Demanda</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-demanda-modal [demanda]="demanda"></app-demanda-modal>
+  </div>
+</ng-template>

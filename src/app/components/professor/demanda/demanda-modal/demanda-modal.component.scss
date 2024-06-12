@@ -1,0 +1,40 @@
+@import '../../../../../assets/styles/cores.scss';
+
+.container{
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.main{
+    width: 80%;
+    padding: 0 200px 0 40px;
+}
+.aside{
+    width: 20%;
+    background-color: $pretoUniamerica;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.coluna{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cabecalhoItem{
+    padding: 20px 0 40px;
+}
+.cabecalhoItem span{
+    background-color: $verdeUniamericaD3;
+    padding: 10px;
+    border-radius: 50px;
+}
+.paragrafoDemanda{
+    margin-top: 20px
+}

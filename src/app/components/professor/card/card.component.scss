@@ -17,3 +17,7 @@
 .container:hover p{
     color: $pretoUniamerica !important;
 }
+
+.modal-header, .modal-body{
+    background-color: $cinzaUniamerica;
+}
