@@ -509,4 +509,14 @@ export class DashboardComponent {
       return d.status.nome === 'Apta';
     }).length;
   }
+  calculaDemandaIniciada(){
+    return this.dados.demanda.filter((d) => {
+      return d.status.nome === 'Em andamento';
+    }).length;
+  }
+  calculaDemandaFinalizada(){
+    return this.dados.demanda.filter((d) => {
+      return d.status.nome === 'Finalizada';
+    }).length;
+  }
 }
