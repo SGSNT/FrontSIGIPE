@@ -161,7 +161,7 @@ export class DemandasdisponiveisalunoComponent {
     //--------------------------------------------------
 
     //cria demanda
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 52; i++) {
       demandaExemplo.idDemanda = i;
       demandaExemplo.quantidadeGrupo = Math.floor(Math.random() * 10) + 1;
       demandaExemplo.problema = `Problema ${i}: Descrição do problema ${i}`;
@@ -175,7 +175,7 @@ export class DemandasdisponiveisalunoComponent {
     }
 
     //cria instituicao
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 26; i++) {
       instituicaoExemplo.idInstituicao = i;
       instituicaoExemplo.nome = `Instituição ${i}`;
       instituicaoExemplo.cidade = `Cidade ${i}`;
@@ -198,7 +198,7 @@ export class DemandasdisponiveisalunoComponent {
     }
 
     //cria demandante
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 52; i++) {
       demandanteExemplo.idDemandante = i;
       demandanteExemplo.nome = `Demandante ${i}`;
       demandanteExemplo.email = `demandante${i}@example.com`;
@@ -314,7 +314,6 @@ export class DemandasdisponiveisalunoComponent {
       coordenadorExtensaoExemplo = new Coordenadorextensao(); // Nova instância para a próxima iteração
     }
 
-    
     this.relacionaDados();
   }
   relacionaDados() {
@@ -388,38 +387,104 @@ export class DemandasdisponiveisalunoComponent {
       this.dados.tipoInstituicao[indexTipoInstituicao].instituicoes.push(i);
     });
 
-    this.dados.curso.forEach((c, index) => {
-      if (index < 2) {
-        c.demandas.push(this.dados.demanda[3 * index]);
-        c.demandas.push(this.dados.demanda[3 * index + 1]);
-        c.demandas.push(this.dados.demanda[3 * index + 2]);
-
-        this.dados.demanda[3 * index].cursos.push(c);
-        this.dados.demanda[3 * index + 1].cursos.push(c);
-        this.dados.demanda[3 * index + 2].cursos.push(c);
-      } else {
-        c.demandas.push(this.dados.demanda[4 * (index - 2) + 6]);
-        c.demandas.push(this.dados.demanda[4 * (index - 2) + 7]);
-        c.demandas.push(this.dados.demanda[4 * (index - 2) + 8]);
-        c.demandas.push(this.dados.demanda[4 * (index - 2) + 9]);
-
-        this.dados.demanda[4 * (index - 2) + 6].cursos.push(c);
-        this.dados.demanda[4 * (index - 2) + 7].cursos.push(c);
-        this.dados.demanda[4 * (index - 2) + 8].cursos.push(c);
-        this.dados.demanda[4 * (index - 2) + 9].cursos.push(c);
-      }
-    });
-
     this.dados.demanda.forEach((d, index) => {
-      d.status = this.dados.statusDemanda[4];
-      this.dados.statusDemanda[4].demandas.push(d);
+      // demandas inicidas
+      if (index <= 10) {
+        //relacionamento status e demanda
+        d.status = this.dados.statusDemanda[0];
+        this.dados.statusDemanda[0].demandas.push(d);
+        if (index <= 7) {
+          let cursoDoGrupo = this.dados.grupo[index].alunos[0].curso; //pega o curso desse grupo
+          let indexCursoNoMock = this.dados.curso.indexOf(cursoDoGrupo); //pega o index do curso no mock principal
 
-      if (index < 16) {
-        d.grupos.push(this.dados.grupo[index]);
-        this.dados.grupo[index].demanda = d;
-      } else {
-        d.grupos.push(this.dados.grupo[index - 16]);
-        this.dados.grupo[index - 16].demanda = d;
+          //relacionamento grupo e demanda
+          d.grupos.push(this.dados.grupo[index]);
+          this.dados.grupo[index].demanda = d;
+
+          d.cursos.push(cursoDoGrupo); //insere o curso do grupo na demanda
+          this.dados.curso[indexCursoNoMock].demandas.push(d); //insere a demanda na lista de demandas deste curso
+        } else {
+          //demandas com 3 grupos
+          for (let i = 0; i < 3; i++) {
+            //relacionamento grupo e demanda
+            let grupoIndex = Math.floor(Math.random() * 16); //pega um grupo aleatório
+            let cursoDoGrupo = this.dados.grupo[grupoIndex].alunos[0].curso; //pega o curso desse grupo
+            let indexCursoNoMock = this.dados.curso.indexOf(cursoDoGrupo); //pega o index do curso no mock principal
+
+            d.grupos.push(this.dados.grupo[grupoIndex]); //insere o grupo na demanda
+            this.dados.grupo[grupoIndex].demanda = d; //insere a demanda no grupo
+
+            if (!d.cursos.includes(cursoDoGrupo)) {
+              d.cursos.push(cursoDoGrupo); //insere o curso do grupo na demanda
+              this.dados.curso[indexCursoNoMock].demandas.push(d); //insere a demanda na lista de demandas deste curso
+            }
+          }
+        }
+      }
+      // demandas aptas
+      else if (index <= 21) {
+        //relacionamento status e demanda
+        d.status = this.dados.statusDemanda[4];
+        this.dados.statusDemanda[4].demandas.push(d);
+        if (index <= 18) {
+          let cursoIndex = Math.floor(Math.random() * 8); //pega um curso aleatório
+
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+        } else if (index <= 20) {
+          let cursoIndex = Math.floor(Math.random() * 7); //pega um curso aleatório
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+        } else {
+          let cursoIndex = Math.floor(Math.random() * 6); //pega um curso aleatório
+
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 2]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 2].demandas.push(d); //insere a demanda no curso
+        }
+      }
+      // demandas encaminhadas
+      else if (index <= 33) {
+        d.status = this.dados.statusDemanda[3];
+        this.dados.statusDemanda[3].demandas.push(d);
+
+        if (index <= 29) {
+          let cursoIndex = Math.floor(Math.random() * 8); //pega um curso aleatório
+
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+        } else if (index <= 31) {
+          let cursoIndex = Math.floor(Math.random() * 7); //pega um curso aleatório
+
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+        } else {
+          let cursoIndex = Math.floor(Math.random() * 6); //pega um curso aleatório
+
+          d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
+          d.cursos.push(this.dados.curso[cursoIndex + 2]); //insere o curso na demanda
+          this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 2].demandas.push(d); //insere a demanda no curso
+        }
+      } 
+      // demandas para análise
+      else if (index <= 47) {
+        d.status = this.dados.statusDemanda[2];
+        this.dados.statusDemanda[2].demandas.push(d);
+      }
+      // demandas negadas
+      else {
+        d.status = this.dados.statusDemanda[1];
+        this.dados.statusDemanda[1].demandas.push(d);
       }
     });
   }
