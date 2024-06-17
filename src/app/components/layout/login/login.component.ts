@@ -6,9 +6,11 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Login } from '../../../auth/login';
+import Swal from 'sweetalert2';
 import { LoginService } from '../../../auth/login.service';
+import { Login } from '../../../auth/login';
 import { CommonModule } from '@angular/common';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -24,49 +26,97 @@ import { CommonModule } from '@angular/common';
     FormsModule,
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
- 
- login: Login = new Login;
- loginService = inject(LoginService);
+  // Definindo uma array de strings para categorias de usuários
+  categorias: string[] = [
+    'Aluno',
+    'Professor',
+    'Coordenação de Curso',
+    'Coordenação de Extensão',
+  ];
+
+  login: Login = new Login();
+
+  // Declarando variável de categoria do usuário
+  categoria!: string;
+
   // Injetando o serviço de roteamento do Angular para poder fazer a navegação entre telas
   router = inject(Router);
-  
-  categoria: string = '';
+  loginService = inject(LoginService);
 
-  categorias: { value: string, viewValue: string }[] = [
-    { value: 'coordenador_extensao', viewValue: 'Coordenador de Extensão' },
-    { value: 'coordenador_curso', viewValue: 'Coordenador de Curso' },
-    { value: 'professor', viewValue: 'Professor' },
-    { value: 'aluno', viewValue: 'Aluno' }
-  ];
+  constructor(){
+    this.loginService.removerToken();
+  }
 
   // Função para realizar o login do usuário
   logar() {
-    console.log('Método logar() chamado'); // Adicionando console.log() para verificar se o método está sendo chamado
+    // Verifica se a categoria não foi selecionada
+    if (this.categoria === undefined) {
+      // Exibe um alerta informando que a categoria não foi selecionada
+      Swal.fire({
+        title: 'Sem categoria',
+        text: 'Selecione uma categoria para prosseguir',
+        icon: 'error',
+      });
+    } else {
+           this.loginService.logar(this.login).subscribe({
 
-    this.loginService.logar(this.login).subscribe({
-      next: token => {
-        console.log(token);
+            next: token => {
 
-        if(token)
-          this.loginService.addToken(token);
+              console.log(token);
 
-        const userRoutes: {[key: string]: string} = {
-          coordenador_extensao: '/coordenadordeextensao/dashboard',
-          coordenador_curso: '/coordenadordecurso/demandas-disponiveis',
-          professor: '/professor/demandas-disponiveis',
-          aluno: '/aluno/demandas-disponiveis'
-        };
+              if(token){
 
-        const userType = userRoutes[this.login.username] || '/login';
-        this.router.navigate([userType]);
-      },
-      error: erro => {
-        console.error(erro);
-      }
-    });
+                this.loginService.addToken(token);
+
+                this.navigateByCategoria(this.categoria);
+              }
+
+            },
+
+            error: erro => {
+
+              Swal.fire({
+
+                title:"Login ou senha inválidos!",
+                text: "Verifique os dados informados e tente novamente",
+                icon: "error",
+
+              });
+            }
+            
+           });
+        } 
+  }
+
+ //Função para navegar para a página correspondente à categoria selecionada
+  navigateByCategoria(categoria: string){
+
+    switch(categoria){
+
+      case 'Aluno':
+        this.router.navigate(['/aluno/demandas-disponiveis']);
+      break;
+
+      case 'Professor':
+        this.router.navigate(['/professor/demandas-disponiveis']);
+      break;
+
+      case 'Coordenação de Curso':
+        this.router.navigate(['/coordenacao-curso/demandas-disponiveis']);
+      break;
+
+      case 'Coordenação de Extensão':
+        this.router.navigate(['/coordenacao-extensao/dashboard']);
+      break;
+
+      default:
+        this.router.navigate(['/login']);
+      break;
+    }
+
   }
 
   // Função para mudar o foco para um elemento específico com base no ID

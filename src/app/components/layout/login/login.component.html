@@ -6,8 +6,10 @@
       <div class="loginInputs">
         <mat-form-field>
           <mat-label>Selecione sua categoria</mat-label>
-          <mat-select id="selectCategoria" (keyup.enter)="changeFocusTo('inputLogin')" [(ngModel)]="categoria">
-            <mat-option *ngFor="let cat of categorias" [value]="cat.value">{{cat.viewValue}}</mat-option>
+          <mat-select [(ngModel)]="categoria" name="categoria" required>
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+              {{ categoria }}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 

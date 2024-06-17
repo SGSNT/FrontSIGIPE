@@ -49,5 +49,29 @@ export class LoginService {
       return false;
   }
 
+  getUsuarioLogado(){
+
+    return this.jwtDecode() as Usuario;
+
+  }
+
+   // Método para verificar se o token está expirado
+   isTokenExpired(): boolean {
+    let token = this.getToken();
+    if (!token) {
+      return true; // Se não houver token, considere-o expirado
+    }
+    let decodedToken: any = jwtDecode(token);
+
+    // Obtendo o tempo atual em milissegundos corretamente
+    let currentTime = new Date().getTime();
+
+    // Convertendo exp para milissegundos e comparando com o tempo atual
+    if (typeof decodedToken.exp !== 'number') {
+      return true; // Se exp não for um número, considere o token expirado
+    }
+
+    return decodedToken.exp * 1000 < currentTime;
+  }
 
 }

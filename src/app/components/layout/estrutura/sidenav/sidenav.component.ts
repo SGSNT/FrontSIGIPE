@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LoginService } from '../../../../auth/login.service';
+import { Usuario } from '../../../../auth/usuario';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,5 +11,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent {
+
+  loginService = inject(LoginService);
+  usuario!: Usuario;
+
+  constructor(){
+     this.usuario = this.loginService.getUsuarioLogado();
+  }
 
 }
