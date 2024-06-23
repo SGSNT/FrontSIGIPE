@@ -16,13 +16,15 @@ export class SidenavComponent {
   }
   verificaUrl(): number{
     let url = window.location.pathname;
-    if(url === '/aluno/demandas-disponiveis'){
+    if(url.startsWith('/aluno')){
       return 1;
-    } else if(url === '/professor/demandas-disponiveis'){
+    } else if(url.startsWith('/professor')){
       return 2;
-    } else if(url === '/coordenacao-curso/demandas-disponiveis'){
+    } else if(url.startsWith('/coordenacao-curso')){
       return 3;
+    } else if(url.startsWith('/coordenacao-extensao')){
+      return 4;
     }
-    return 4;
+    return 0;
   }
 }
