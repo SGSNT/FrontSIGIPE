@@ -7,7 +7,7 @@
             <p>{{demanda.instituicao.nome}}</p>
             <p>{{demanda.instituicao.cidade}}</p>
         </div>
-        <div class="cabecalhoItem">
+        <div class="cabecalhoItem cabecalhoCursos">
           @for (curso of demanda.cursos; track $index) {
             <p><span>{{curso.nome}}</span></p>
           }
@@ -27,7 +27,6 @@
 
 
     </div>
-
     <div class="paragrafoDemanda">
       <h4>Problema</h4>
       <p>{{demanda.problema}}</p>

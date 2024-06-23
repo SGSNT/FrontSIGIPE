@@ -9,8 +9,10 @@ export class Instituicao {
     cep!: string;
     cnpj!: string;
     razaoSocial!: string;
+
     tipoInstituicao!: Tipoinstituicao;
     demandantes: Demandante[] = [];
     demandas: Demanda[] = [];
+    
     constructor() {}
 }

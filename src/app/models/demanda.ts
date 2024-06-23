@@ -2,6 +2,7 @@ import { Curso } from "./curso";
 import { Demandante } from "./demandante";
 import { Grupo } from "./grupo";
 import { Instituicao } from "./instituicao";
+import { Periodo } from "./periodo";
 import { Statusdemanda } from "./statusdemanda";
 
 export class Demanda {
@@ -11,11 +12,13 @@ export class Demanda {
     resultado!: string;
     impacto!: string;
     prazo!: string;
+    
     grupos: Grupo[] = [];
     instituicao!: Instituicao;
     demandante!: Demandante;
     status!: Statusdemanda;
     cursos: Curso[] = [];
+    periodos: Periodo[] = [];
 
     constructor(){}
 }

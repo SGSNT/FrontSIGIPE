@@ -10,6 +10,7 @@ import { Instituicao } from "./instituicao";
 import { Periodo } from "./periodo";
 import { Professor } from "./professor";
 import { Statusdemanda } from "./statusdemanda";
+import { Statusgrupo } from "./statusgrupo";
 import { Statuspessoa } from "./statuspessoa";
 import { Tipoinstituicao } from "./tipoinstituicao";
 
@@ -27,6 +28,7 @@ export class Dados {
     professor: Professor[] = [];
     statusDemanda: Statusdemanda[] = [];
     statusPessoa: Statuspessoa[] = [];
+    statusGrupo: Statusgrupo[] = [];
     tipoInstituicao: Tipoinstituicao[] = [];
     constructor(){}
 }

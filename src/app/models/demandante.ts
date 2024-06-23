@@ -7,5 +7,8 @@ export class Demandante {
     email!: string;
     telefone!: string;
 
+    instituicao!: Instituicao;
+    demandas: Demanda[] = []
+
     constructor() {}
 }

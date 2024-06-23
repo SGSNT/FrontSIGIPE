@@ -8,7 +8,9 @@ export class Pessoa {
   senha!: string;
   cpf!: string;
   telefone!: string;
+  
   funcao!: Funcao;
   status!: Statuspessoa;
+
   constructor() {}
 }

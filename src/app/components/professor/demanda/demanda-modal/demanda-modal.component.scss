@@ -35,6 +35,11 @@
     padding: 10px;
     border-radius: 50px;
 }
+.cabecalhoCursos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 .paragrafoDemanda{
     margin-top: 20px
 }

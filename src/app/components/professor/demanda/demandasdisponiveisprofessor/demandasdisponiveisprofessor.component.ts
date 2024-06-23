@@ -26,6 +26,7 @@ import { Funcao } from '../../../../models/funcao';
 import { Periodo } from '../../../../models/periodo';
 import { Statuspessoa } from '../../../../models/statuspessoa';
 import { SearchbarComponent } from '../../../layout/searchbar/searchbar.component';
+import { Statusgrupo } from '../../../../models/statusgrupo';
 
 @Component({
   selector: 'app-demandasdisponiveisprofessor',
@@ -87,6 +88,7 @@ export class DemandasdisponiveisprofessorComponent {
     let funcaoExemplo = new Funcao();
     let periodoExemplo = new Periodo();
     let statusPessoaExemplo = new Statuspessoa();
+    let statusGrupoExemplo = new Statusgrupo();
 
     let nomesStatusDemanda = [
       'Em andamento',
@@ -145,6 +147,10 @@ export class DemandasdisponiveisprofessorComponent {
       'Formado',
       'Transferido',
     ];
+    let nomesStatusGrupo = [
+      'Ativo',
+      'Inativo',
+    ];
     //cria tipo de instituição
     nomesTipoInstituicao.forEach((nome, index) => {
       tipoInstituicaoExemplo.idTipoInstituicao = index + 1;
@@ -194,7 +200,14 @@ export class DemandasdisponiveisprofessorComponent {
       this.dados.statusPessoa.push(statusPessoaExemplo);
       statusPessoaExemplo = new Statuspessoa();
     });
-
+    //cria status de grupo
+    nomesStatusGrupo.forEach((nome, index) => {
+      statusGrupoExemplo.idStatusGrupo = index + 1;
+      statusGrupoExemplo.nome = nome;
+      this.dados.statusGrupo.push(statusGrupoExemplo);
+      statusGrupoExemplo = new Statusgrupo();
+    });
+    
     //--------------------------------------------------
 
     //cria demanda
@@ -369,6 +382,8 @@ export class DemandasdisponiveisprofessorComponent {
 
       al.grupos.push(this.dados.grupo[Math.floor(index / 5)]);
       this.dados.grupo[Math.floor(index / 5)].alunos.push(al);
+
+      
     });
 
     this.dados.professor.forEach((pr, index) => {
@@ -443,17 +458,23 @@ export class DemandasdisponiveisprofessorComponent {
         } else {
           //demandas com 3 grupos
           for (let i = 0; i < 3; i++) {
-            //relacionamento grupo e demanda
             let grupoIndex = Math.floor(Math.random() * 16); //pega um grupo aleatório
             let cursoDoGrupo = this.dados.grupo[grupoIndex].alunos[0].curso; //pega o curso desse grupo
             let indexCursoNoMock = this.dados.curso.indexOf(cursoDoGrupo); //pega o index do curso no mock principal
-
+            let periodoDoGrupo = this.dados.grupo[grupoIndex].periodo;
+            let indexPeriodoNoMock = this.dados.periodo.indexOf(periodoDoGrupo);
+            
+            //relacionamento grupo e demanda
             d.grupos.push(this.dados.grupo[grupoIndex]); //insere o grupo na demanda
             this.dados.grupo[grupoIndex].demanda = d; //insere a demanda no grupo
 
             if (!d.cursos.includes(cursoDoGrupo)) {
               d.cursos.push(cursoDoGrupo); //insere o curso do grupo na demanda
               this.dados.curso[indexCursoNoMock].demandas.push(d); //insere a demanda na lista de demandas deste curso
+            }
+            if(!(d.periodos.includes(periodoDoGrupo))){
+              d.periodos.push(periodoDoGrupo);
+              this.dados.periodo[indexPeriodoNoMock].demandas.push(d);
             }
           }
         }
@@ -463,19 +484,46 @@ export class DemandasdisponiveisprofessorComponent {
         //relacionamento status e demanda
         d.status = this.dados.statusDemanda[4];
         this.dados.statusDemanda[4].demandas.push(d);
-        if (index <= 18) {
-          let cursoIndex = Math.floor(Math.random() * 8); //pega um curso aleatório
 
+        if(index <= 15){
+          //relacionamento status e demanda
+          d.status = this.dados.statusDemanda[4]; 
+          this.dados.statusDemanda[4].demandas.push(d);
+          
+          let periodoIndex = Math.floor(Math.random() * 10);
+
+          d.periodos.push(this.dados.periodo[periodoIndex]);
+          this.dados.periodo[periodoIndex].demandas.push(d);
+        }
+        else if (index <= 18) {
+          let cursoIndex = Math.floor(Math.random() * 8); //pega um curso aleatório
+          let periodoIndex = Math.floor(Math.random() * 9);
+
+          d.periodos.push(this.dados.periodo[periodoIndex]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 1]);
+          this.dados.periodo[periodoIndex].demandas.push(d);
+          this.dados.periodo[periodoIndex + 1].demandas.push(d);
+          
           d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
           this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
         } else if (index <= 20) {
           let cursoIndex = Math.floor(Math.random() * 7); //pega um curso aleatório
+          let periodoIndex = Math.floor(Math.random() * 8);
+
           d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
           d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
           this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
           this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+
+          d.periodos.push(this.dados.periodo[periodoIndex]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 1]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 2]);
+          this.dados.periodo[periodoIndex].demandas.push(d);
+          this.dados.periodo[periodoIndex + 1].demandas.push(d);
+          this.dados.periodo[periodoIndex + 2].demandas.push(d);
         } else {
           let cursoIndex = Math.floor(Math.random() * 6); //pega um curso aleatório
+          let periodoIndex = Math.floor(Math.random() * 7);
 
           d.cursos.push(this.dados.curso[cursoIndex]); //insere o curso na demanda
           d.cursos.push(this.dados.curso[cursoIndex + 1]); //insere o curso na demanda
@@ -483,6 +531,16 @@ export class DemandasdisponiveisprofessorComponent {
           this.dados.curso[cursoIndex].demandas.push(d); //insere a demanda no curso
           this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
           this.dados.curso[cursoIndex + 2].demandas.push(d); //insere a demanda no curso
+          this.dados.curso[cursoIndex + 1].demandas.push(d); //insere a demanda no curso
+
+          d.periodos.push(this.dados.periodo[periodoIndex]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 1]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 2]);
+          d.periodos.push(this.dados.periodo[periodoIndex + 3]);
+          this.dados.periodo[periodoIndex].demandas.push(d);
+          this.dados.periodo[periodoIndex + 1].demandas.push(d);
+          this.dados.periodo[periodoIndex + 2].demandas.push(d);
+          this.dados.periodo[periodoIndex + 3].demandas.push(d);
         }
       }
       // demandas encaminhadas
@@ -525,6 +583,8 @@ export class DemandasdisponiveisprofessorComponent {
       }
     });
   }
+
+
   filtraDemandas(): Demanda[] {
     return this.dados.demanda.filter((d) => {
       return d.cursos.includes(this.user.curso);
