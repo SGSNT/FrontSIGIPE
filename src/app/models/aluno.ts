@@ -1,11 +1,11 @@
 import { Curso } from "./curso";
 import { Grupo } from "./grupo";
-import { Periodo } from "./periodo";
 import { Pessoa } from "./pessoa";
+import { Turma } from "./turma";
 
 export class Aluno extends Pessoa {
     curso!: Curso;
-    periodo!: Periodo;
+    turma!: Turma;
     grupos: Grupo[] = [];
 
     constructor() {

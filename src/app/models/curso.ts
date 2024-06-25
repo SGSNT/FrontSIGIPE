@@ -1,20 +1,19 @@
 import { Aluno } from "./aluno";
 import { Coordenadorcurso } from "./coordenadorcurso";
 import { Demanda } from "./demanda";
-import { Grupo } from "./grupo";
-import { Periodo } from "./periodo";
 import { Professor } from "./professor";
+import { Turma } from "./turma";
 
 export class Curso {
-    idCurso!: number;
+    id!: number;
     nome!: string;
+    quantidadePeriodos!: number;
 
-    demandas: Demanda[] = [];
     alunos: Aluno[] = [];
     professores: Professor[] = [];
     coordenadores: Coordenadorcurso[] = [];
-    periodos: Periodo[] = [];
-    grupos: Grupo[] = [];
+    demandas: Demanda[] = [];
+    turmas: Turma[] = [];
 
     constructor(){}
 }

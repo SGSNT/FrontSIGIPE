@@ -1,15 +1,14 @@
 import { Aluno } from "./aluno";
 import { Curso } from "./curso";
 import { Demanda } from "./demanda";
+import { Professor } from "./professor";
 
-export class Grupo {
+export class Turma {
     id!: number;
-    nome!: string;
-    
-    demandaSolicitada!: Demanda;
-    demandaInscrita!: Demanda;
+    periodoCurso!: number;
+
     curso!: Curso;
     alunos: Aluno[] = [];
-
-    constructor() {}
+    professors: Professor[] = [];
+    demandas: Demanda[] = [];
 }

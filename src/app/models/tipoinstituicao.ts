@@ -1,7 +1,7 @@
 import { Instituicao } from "./instituicao";
 
 export class Tipoinstituicao {
-    idTipoInstituicao!: number;
+    id!: number;
     nome!: string;
     instituicoes: Instituicao[] = [];
     constructor(){}

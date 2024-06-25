@@ -3,14 +3,11 @@ import { Demandante } from "./demandante";
 import { Tipoinstituicao } from "./tipoinstituicao";
 
 export class Instituicao {
-    idInstituicao!: number;
+    id!: number;
     nome!: string;
     cidade!: string;
-    cep!: string;
-    cnpj!: string;
-    razaoSocial!: string;
 
-    tipoInstituicao!: Tipoinstituicao;
+    tipo!: Tipoinstituicao;
     demandantes: Demandante[] = [];
     demandas: Demanda[] = [];
     

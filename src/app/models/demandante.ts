@@ -2,7 +2,7 @@ import { Demanda } from "./demanda";
 import { Instituicao } from "./instituicao";
 
 export class Demandante {
-    idDemandante!: number;
+    id!: number;
     nome!: string;
     email!: string;
     telefone!: string;
