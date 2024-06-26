@@ -18,16 +18,16 @@ export class CursoService {
     return this.http.get<Curso[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Curso>{
+    return this.http.delete<Curso>(this.API+"/deleteById/"+id);
   }
 
-  save(curso: Curso): Observable<string>{
-    return this.http.post<string>(this.API+"/save", curso, {responseType: 'text' as 'json'});
+  save(curso: Curso): Observable<Curso>{
+    return this.http.post<Curso>(this.API+"/save", curso);
   }
 
-  update(curso: Curso, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, curso, {responseType: 'text' as 'json'});
+  update(curso: Curso, id: number): Observable<Curso>{
+    return this.http.put<Curso>(this.API+"/update/"+id, curso);
   }
 
   findById(id: number): Observable<Curso>{

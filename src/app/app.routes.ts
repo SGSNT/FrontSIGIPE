@@ -5,6 +5,7 @@ import { DemandasdisponiveisalunoComponent } from './components/aluno/demanda/de
 import { DemandasdisponiveiscoordenacaocursoComponent } from './components/coordenacaocurso/demanda/demandasdisponiveiscoordenacaocurso/demandasdisponiveiscoordenacaocurso.component';
 import { DashboardComponent } from './components/coordenacaoextensao/dashboard/dashboard/dashboard.component';
 import { DemandasdisponiveisprofessorComponent } from './components/professor/demanda/demandasdisponiveisprofessor/demandasdisponiveisprofessor.component';
+import { GestaoacademicaComponent } from './components/coordenacaoextensao/gestaoacademica/gestaoacademica.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -16,7 +17,8 @@ export const routes: Routes = [
         {path: 'demandas-disponiveis', component: DemandasdisponiveisalunoComponent}
     ]},
     {path: 'coordenacao-extensao', component: FrameComponent, children: [
-        {path: 'dashboard', component: DashboardComponent}
+        {path: 'dashboard', component: DashboardComponent},
+        {path: 'gestao-academica', component: GestaoacademicaComponent}
     ]},
     {path: 'coordenacao-curso', component: FrameComponent, children: [
         {path: 'demandas-disponiveis', component:DemandasdisponiveiscoordenacaocursoComponent}

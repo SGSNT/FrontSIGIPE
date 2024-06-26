@@ -1,0 +1,92 @@
+<div class="container">
+
+  <mdb-accordion>
+    <div class="btnRow">
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="btnCadastrar"
+        mdbRipple
+        (click)="save()"
+      >
+        Cadastrar curso
+      </button>
+      <button
+      type="button"
+      class="btn btn-primary"
+      id="btnCadastrar"
+      mdbRipple
+      (click)="criarTurmas()"
+    >
+      (Re)Iniciar turmas do semestre
+    </button>
+    </div>
+    @for (curso of cursos; track $index) {
+      <mdb-accordion-item class="accordionCursos">
+        <ng-template mdbAccordionItemHeader>{{curso.nome}}</ng-template>
+        <ng-template mdbAccordionItemBody>
+          <button
+            type="button"
+            class="btn btn-warning"
+            id="btnEditar"
+            mdbRipple
+            (click)="update(curso)"
+          >
+            Editar curso
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            id="btnDeletar"
+            mdbRipple
+            (click)="deleteById(curso)"
+          >
+            Deletar curso
+          </button>
+          <ul class="list-group list-group-light">
+            @for (coordenador of curso.coordenadores; track $index) {
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold">{{coordenador.nome}}</div>
+                </div>
+                <span class="badge rounded-pill badge-success">Coordenador</span>
+              </li>
+            }
+            @for (professor of curso.professores; track $index) {
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-bold">{{professor.nome}}</div>
+                </div>
+                <span class="badge rounded-pill badge-primary">Professor</span>
+              </li>
+            }
+          </ul>
+        </ng-template>
+      </mdb-accordion-item>
+    }
+  </mdb-accordion>
+</div>
+
+<ng-template #modalCadastrarCurso>
+  <div class="modal-header">
+    @if (cursoEdit.id == null) {
+      <h5 class="modal-title" id="modalCadastrarCursoTitulo">
+        Cadastro de curso
+      </h5>
+    }
+    @else {
+      <h5 class="modal-title" id="modalCadastrarCursoTitulo">
+        Edição de curso
+      </h5>
+    }
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalgacursos [curso]="cursoEdit" (retorno)="recarregaCursos($event)"></app-modalgacursos>
+  </div>
+</ng-template>

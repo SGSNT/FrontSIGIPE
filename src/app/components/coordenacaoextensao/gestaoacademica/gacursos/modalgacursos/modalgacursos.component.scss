@@ -1,0 +1,16 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Para navegadores baseados no Firefox */
+input[type="number"]::-moz-focus-inner {
+  border: 0;
+}
+
+/* Para todos os navegadores (o 'appearance' deve cobrir também futuras implementações padrão) */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

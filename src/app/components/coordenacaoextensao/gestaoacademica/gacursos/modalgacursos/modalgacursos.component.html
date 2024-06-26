@@ -1,0 +1,41 @@
+<form>
+  <!-- Nome -->
+  <mdb-form-control class="mb-4">
+    <input
+      mdbInput
+      type="email"
+      id="nomeCurso"
+      name="nomeCurso"
+      class="form-control"
+      required
+      [(ngModel)]="curso.nome"
+    />
+    <label mdbLabel class="form-label" for="nomeCurso">Nome do curso</label>
+  </mdb-form-control>
+
+  <!-- Número de períodos -->
+  <mdb-form-control class="mb-4">
+    <input
+      mdbInput
+      type="number"
+      id="numeroPeriodos"
+      name="numeroPeriodos"
+      class="form-control"
+      required
+      [(ngModel)]="curso.quantidadePeriodos"
+    />
+    <label mdbLabel class="form-label" for="numeroPeriodos"
+      >Número de períodos</label
+    >
+  </mdb-form-control>
+
+  <!-- Submit button -->
+  <button
+    mdbRipple
+    type="button"
+    class="btn btn-primary btn-block"
+    (click)="save()"
+  >
+    Cadastrar
+  </button>
+</form>

@@ -6,7 +6,7 @@ import { Turma } from "./turma";
 export class Aluno extends Pessoa {
     curso!: Curso;
     turma!: Turma;
-    grupos: Grupo[] = [];
+    grupos!: Grupo;
 
     constructor() {
         super();

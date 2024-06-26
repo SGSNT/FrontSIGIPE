@@ -21,7 +21,7 @@
         </div>
         <div class="cabecalhoItem">
             <h4>Quantidade de Grupos</h4>
-            <p>{{demanda.grupos.length}}</p>
+            <p>{{demanda.gruposInscritos.length}}</p>
         </div>
       </div>
 
@@ -29,25 +29,25 @@
     </div>
     <div class="paragrafoDemanda">
       <h4>Problema</h4>
-      <p>{{demanda.problema}}</p>
+      <p>{{demanda.descricaoProblema}}</p>
     </div>
     <div class="paragrafoDemanda">
       <h4>Resultados esperados</h4>
-      <p>{{demanda.resultado}}</p>
+      <p>{{demanda.resultadosEsperados}}</p>
     </div>
     <div class="paragrafoDemanda">
       <h4>Impacto</h4>
-      <p>{{demanda.impacto}}</p>
+      <p>{{demanda.nivelImpacto}}</p>
     </div>
     <div class="paragrafoDemanda">
       <h4>Expectativa de prazo</h4>
-      <p>{{demanda.prazo}}</p>
+      <p>{{demanda.expectativaPrazo}}</p>
     </div>
   </div>
   <div class="aside">
     <h4></h4>
-    @for (grupo of demanda.grupos; track $index) {
-    <h3>Grupo {{grupo.idGrupo}}</h3>
+    @for (grupo of demanda.gruposInscritos; track $index) {
+    <h3>Grupo {{grupo.id}}</h3>
     <div class="grupoDemanda">
       @for (aluno of grupo.alunos; track $index) {
       <div class="imgAluno"></div>
