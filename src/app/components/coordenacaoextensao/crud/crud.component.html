@@ -9,6 +9,11 @@
         <mdb-accordion-item>
           <ng-template mdbAccordionItemHeader>Curso</ng-template>
           <ng-template mdbAccordionItemBody>
+            <div class="btnRow">
+                <button type="button" class="btn btn-primary" mdbRipple>Cadastrar</button>
+                <button type="button" class="btn btn-primary" mdbRipple>Button</button>
+                <button type="button" class="btn btn-primary" mdbRipple>Button</button>
+            </div>
             <ol class="list-group list-group-light list-group-numbered">
               @for (curso of listaCursos; track $index) {
               <li
