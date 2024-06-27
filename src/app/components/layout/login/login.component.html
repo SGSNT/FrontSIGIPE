@@ -20,7 +20,7 @@
             type="text"
             id="inputLogin"
             class="form-control"
-            [(ngModel)]="login"
+            [(ngModel)]="login.username"
             (keyup.enter)="changeFocusTo('inputSenha')"
           />
           <label mdbLabel class="form-label" for="form-log">Login</label>
@@ -32,7 +32,7 @@
             type="password"
             id="inputSenha"
             class="form-control"
-            [(ngModel)]="senha"
+            [(ngModel)]="login.password"
             (keyup.enter)="logar()"
           />
           <label mdbLabel class="form-label" for="form-pass">Senha</label>

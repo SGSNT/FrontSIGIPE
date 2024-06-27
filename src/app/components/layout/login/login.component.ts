@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import Swal from 'sweetalert2';
+import { LoginService } from '../../../auth/login.service';
+import { Login } from '../../../auth/login';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -33,46 +36,82 @@ export class LoginComponent {
   ];
 
   // Declarando variáveis para login, senha e categoria do usuário
-  login!: string;
-  senha!: string;
   categoria!: string;
+
+  login: Login = new Login();
+
+  loginService = inject(LoginService);
 
   // Injetando o serviço de roteamento do Angular para poder fazer a navegação entre telas
   router = inject(Router);
 
+  constructor(){
+    this.loginService.removerToken();
+  }
+
   // Função para realizar o login do usuário
   logar() {
-    // Verifica se a categoria não foi selecionada
-    if (this.categoria === undefined) {
-      // Exibe um alerta informando que a categoria não foi selecionada
+    
+    if(this.categoria == null){
+
       Swal.fire({
-        title: 'Sem categoria',
-        text: 'Selecione uma categoria para prosseguir',
-        icon: 'error',
+
+        title: 'Sem categoria selecionada',
+        text: 'Por favor, selecione uma categoria para prosseguir',
+        icon: 'warning',
       });
-    } else {
-      // Verifica se o login e a senha são 'admin'
-      if (this.login == 'admin' && this.senha == 'admin') {
-        // Verifica qual categoria foi selecionada e navega para a página correspondente
-        if (this.categoria === this.categorias[0]) {
-          this.router.navigate(['aluno/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[1]) {
-          this.router.navigate(['professor/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[2]) {
-          this.router.navigate(['coordenacao-curso/demandas-disponiveis']);
-        } else if (this.categoria === this.categorias[3]) {
-          this.router.navigate(['coordenacao-extensao/dashboard']);
+    }else{
+
+      this.loginService.logar(this.login).subscribe({
+
+        next: (token) => {
+
+          this.loginService.addToken(token);
+
+          const user = this.loginService.jwtDecode() as {role: string};
+          this.redirectToPageByRole(user.role);
+        },
+
+        error:() => {
+
+          Swal.fire({
+
+            title: 'Login ou senha inválidos',
+            text: 'Por favor, verifique suas credenciais e tente novamente',
+            icon: 'error',
+
+          });
+
         }
-      } else {
-        // Exibe um alerta informando que o login ou senha são inválidos
-        Swal.fire({
-          title: 'Login ou senha inválidos!',
-          text: 'Tente novamente para prosseguir',
-          icon: 'error',
-        });
-      }
+
+      });
+
     }
   }
+
+  redirectToPageByRole(role: string) {
+    switch (role) {
+      case 'aluno':
+        this.router.navigate(['aluno/demandas-disponiveis']);
+        break;
+      case 'professor':
+        this.router.navigate(['professor/demandas-disponiveis']);
+        break;
+      case 'coordenacaoCurso':
+        this.router.navigate(['coordenacao-curso/demandas-disponiveis']);
+        break;
+      case 'coordenacaoExtensao':
+        this.router.navigate(['coordenacao-extensao/dashboard']);
+        break;
+      default:
+        Swal.fire({
+          title: 'Erro',
+          text: 'Role desconhecida!',
+          icon: 'error',
+        });
+    }
+  }
+
   // Função para mudar o foco para um elemento específico com base no ID
   changeFocusTo(id: string) {
     // Obtém o elemento pelo ID fornecido como parâmetro

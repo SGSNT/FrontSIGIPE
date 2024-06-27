@@ -6,21 +6,22 @@ import { DemandasdisponiveiscoordenacaocursoComponent } from './components/coord
 import { DashboardComponent } from './components/coordenacaoextensao/dashboard/dashboard/dashboard.component';
 import { DemandasdisponiveisprofessorComponent } from './components/professor/demanda/demandasdisponiveisprofessor/demandasdisponiveisprofessor.component';
 import { GestaoacademicaComponent } from './components/coordenacaoextensao/gestaoacademica/gestaoacademica.component';
+import { loginGuard } from './auth/login.guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {path: 'professor', component: FrameComponent, children: [
+    {path: 'professor', component: FrameComponent,  canActivate: [loginGuard], children: [
         {path: 'demandas-disponiveis', component: DemandasdisponiveisprofessorComponent}
     ]},
-    {path: 'aluno', component: FrameComponent, children: [
+    {path: 'aluno', component: FrameComponent, canActivate: [loginGuard], children: [
         {path: 'demandas-disponiveis', component: DemandasdisponiveisalunoComponent}
     ]},
-    {path: 'coordenacao-extensao', component: FrameComponent, children: [
+    {path: 'coordenacao-extensao', component: FrameComponent, canActivate: [loginGuard], children: [
         {path: 'dashboard', component: DashboardComponent},
         {path: 'gestao-academica', component: GestaoacademicaComponent}
     ]},
-    {path: 'coordenacao-curso', component: FrameComponent, children: [
+    {path: 'coordenacao-curso', component: FrameComponent,canActivate: [loginGuard], children: [
         {path: 'demandas-disponiveis', component:DemandasdisponiveiscoordenacaocursoComponent}
     ]},
 ];
