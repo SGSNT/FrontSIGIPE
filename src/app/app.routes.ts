@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/coordenacaoextensao/dashboard/d
 import { DemandasdisponiveisprofessorComponent } from './components/professor/demanda/demandasdisponiveisprofessor/demandasdisponiveisprofessor.component';
 import { GestaoacademicaComponent } from './components/coordenacaoextensao/gestaoacademica/gestaoacademica.component';
 import { loginGuard } from './auth/login.guard';
+import { CrudComponent } from './components/coordenacaoextensao/crud/crud.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,7 +20,8 @@ export const routes: Routes = [
     ]},
     {path: 'coordenacao-extensao', component: FrameComponent, canActivate: [loginGuard], children: [
         {path: 'dashboard', component: DashboardComponent},
-        {path: 'gestao-academica', component: GestaoacademicaComponent}
+        {path: 'gestao-academica', component: GestaoacademicaComponent},
+        {path: 'crud', component: CrudComponent}
     ]},
     {path: 'coordenacao-curso', component: FrameComponent,canActivate: [loginGuard], children: [
         {path: 'demandas-disponiveis', component:DemandasdisponiveiscoordenacaocursoComponent}

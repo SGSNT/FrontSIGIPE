@@ -1,0 +1,151 @@
+<mdb-accordion>
+  <mdb-accordion-item>
+    <ng-template mdbAccordionItemHeader>
+      <h2>1ª Camada</h2>
+    </ng-template>
+    <ng-template mdbAccordionItemBody>
+      <mdb-accordion>
+        <!-- curso -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Curso</ng-template>
+          <ng-template mdbAccordionItemBody>
+            <ol class="list-group list-group-light list-group-numbered">
+              @for (curso of listaCursos; track $index) {
+              <li
+                class="list-group-item d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ curso.nome }}</div>
+                  @for (coordenador of curso.coordenadores; track $index) {
+                  {{ coordenador.nome }}
+                  <p></p>
+                  }
+                </div>
+              </li>
+              }
+            </ol>
+          </ng-template>
+        </mdb-accordion-item>
+
+        <!-- tipo instituicao -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Tipo Instituição</ng-template>
+          <ng-template mdbAccordionItemBody>
+            <ol class="list-group list-group-light list-group-numbered">
+              @for (tipo of listaTipos; track $index) {
+              <li
+                class="list-group-item d-flex justify-content-between align-items-start"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ tipo.nome }}</div>
+                </div>
+              </li>
+              }
+            </ol>
+          </ng-template>
+        </mdb-accordion-item>
+
+        <!-- status demanda -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Status Demanda</ng-template>
+          <ng-template mdbAccordionItemBody>
+            <ol class="list-group list-group-light list-group-numbered">
+                @for (status of listaStatus; track $index) {
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{status.nome}}</div>
+                      </div>
+                    </li>
+                }
+              </ol>
+          </ng-template>
+        </mdb-accordion-item>
+
+        <!-- coordenador de extensao -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Coordenador Extensão</ng-template>
+          <ng-template mdbAccordionItemBody>
+            <ol class="list-group list-group-light list-group-numbered">
+                @for (coordenador of listaCoordenadorExtensao; track $index) {
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{coordenador.nome}}</div>
+                        CPF: {{coordenador.cpf}}
+                      </div>
+                    </li>
+                }
+              </ol>
+          </ng-template>
+        </mdb-accordion-item>
+      </mdb-accordion>
+    </ng-template>
+  </mdb-accordion-item>
+
+  <mdb-accordion-item>
+    <ng-template mdbAccordionItemHeader>
+      <h2>2ª Camada</h2>
+    </ng-template>
+    <ng-template mdbAccordionItemBody>
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+      aesthetic synth nesciunt you probably haven't heard of them accusamus
+      labore sustainable VHS.
+    </ng-template>
+  </mdb-accordion-item>
+
+  <mdb-accordion-item>
+    <ng-template mdbAccordionItemHeader>
+      <h2>3ª Camada</h2>
+    </ng-template>
+    <ng-template mdbAccordionItemBody>
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+      aesthetic synth nesciunt you probably haven't heard of them accusamus
+      labore sustainable VHS.
+    </ng-template>
+  </mdb-accordion-item>
+
+  <mdb-accordion-item>
+    <ng-template mdbAccordionItemHeader>
+      <h2>4ª Camada</h2>
+    </ng-template>
+    <ng-template mdbAccordionItemBody>
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+      aesthetic synth nesciunt you probably haven't heard of them accusamus
+      labore sustainable VHS.
+    </ng-template>
+  </mdb-accordion-item>
+
+  <mdb-accordion-item>
+    <ng-template mdbAccordionItemHeader>
+      <h2>5ª Camada</h2>
+    </ng-template>
+    <ng-template mdbAccordionItemBody>
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
+      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
+      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+      aesthetic synth nesciunt you probably haven't heard of them accusamus
+      labore sustainable VHS.
+    </ng-template>
+  </mdb-accordion-item>
+</mdb-accordion>
