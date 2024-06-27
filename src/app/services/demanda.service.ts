@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Demanda } from '../models/demanda';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -10,7 +11,7 @@ export class DemandaService {
   
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/demanda";
+  API = environment.SERVIDOR+"/api/demanda";
 
   constructor() { }
 
@@ -18,16 +19,16 @@ export class DemandaService {
     return this.http.get<Demanda[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Demanda>{
+    return this.http.delete<Demanda>(this.API+"/deleteById/"+id);
   }
 
-  save(demanda: Demanda): Observable<string>{
-    return this.http.post<string>(this.API+"/save", demanda, {responseType: 'text' as 'json'});
+  save(demanda: Demanda): Observable<Demanda>{
+    return this.http.post<Demanda>(this.API+"/save", demanda);
   }
 
-  update(demanda: Demanda, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, demanda, {responseType: 'text' as 'json'});
+  update(demanda: Demanda, id: number): Observable<Demanda>{
+    return this.http.put<Demanda>(this.API+"/update/"+id, demanda);
   }
 
   findById(id: number): Observable<Demanda>{

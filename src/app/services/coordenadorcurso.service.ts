@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Coordenadorcurso } from '../models/coordenadorcurso';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CoordenadorcursoService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/coordenadorCurso";
+  API = environment.SERVIDOR+"/api/coordenadorCurso";
 
   constructor() { }
 
@@ -18,16 +19,16 @@ export class CoordenadorcursoService {
     return this.http.get<Coordenadorcurso[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Coordenadorcurso>{
+    return this.http.delete<Coordenadorcurso>(this.API+"/deleteById/"+id);
   }
 
-  save(coordenadorCurso: Coordenadorcurso): Observable<string>{
-    return this.http.post<string>(this.API+"/save", coordenadorCurso, {responseType: 'text' as 'json'});
+  save(coordenadorCurso: Coordenadorcurso): Observable<Coordenadorcurso>{
+    return this.http.post<Coordenadorcurso>(this.API+"/save", coordenadorCurso);
   }
 
-  update(coordenadorCurso: Coordenadorcurso, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, coordenadorCurso, {responseType: 'text' as 'json'});
+  update(coordenadorCurso: Coordenadorcurso, id: number): Observable<Coordenadorcurso>{
+    return this.http.put<Coordenadorcurso>(this.API+"/update/"+id, coordenadorCurso);
   }
 
   findById(id: number): Observable<Coordenadorcurso>{

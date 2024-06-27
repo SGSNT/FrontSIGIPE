@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Tipoinstituicao } from '../models/tipoinstituicao';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class TipoinstituicaoService {
   
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/tipoInstituicao";
+  API = environment.SERVIDOR+"/api/tipoInstituicao";
 
   constructor() { }
 
@@ -18,16 +19,16 @@ export class TipoinstituicaoService {
     return this.http.get<Tipoinstituicao[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Tipoinstituicao>{
+    return this.http.delete<Tipoinstituicao>(this.API+"/deleteById/"+id);
   }
 
-  save(tipoInstituicao: Tipoinstituicao): Observable<string>{
-    return this.http.post<string>(this.API+"/save", tipoInstituicao, {responseType: 'text' as 'json'});
+  save(tipoInstituicao: Tipoinstituicao): Observable<Tipoinstituicao>{
+    return this.http.post<Tipoinstituicao>(this.API+"/save", tipoInstituicao);
   }
 
-  update(tipoInstituicao: Tipoinstituicao, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, tipoInstituicao, {responseType: 'text' as 'json'});
+  update(tipoInstituicao: Tipoinstituicao, id: number): Observable<Tipoinstituicao>{
+    return this.http.put<Tipoinstituicao>(this.API+"/update/"+id, tipoInstituicao);
   }
 
   findById(id: number): Observable<Tipoinstituicao>{

@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Demandante } from '../models/demandante';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,20 +11,20 @@ export class DemandanteService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/demandante";
+  API = environment.SERVIDOR+"/api/demandante";
 
   constructor() { }
 
-  save(demandante: Demandante): Observable<String>{
-    return this.http.post<string>(this.API + "/save",demandante,{responseType: 'text' as 'json'});
+  save(demandante: Demandante): Observable<Demandante>{
+    return this.http.post<Demandante>(this.API + "/save",demandante);
   }
 
-  update(demandante: Demandante, id:number): Observable<string>{
-    return this.http.put<string>(this.API + "/update/" + id, demandante,{responseType: 'text' as 'json'});
+  update(demandante: Demandante, id:number): Observable<Demandante>{
+    return this.http.put<Demandante>(this.API + "/update/" + id, demandante);
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API + "/delete/" + id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Demandante>{
+    return this.http.delete<Demandante>(this.API + "/delete/" + id);
   }
 
   findById(id: number): Observable<Demandante>{

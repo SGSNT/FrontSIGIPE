@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Professor } from '../models/professor';
 @Injectable({
@@ -9,7 +10,7 @@ export class ProfessorService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/professor";
+  API = environment.SERVIDOR+"/api/professor";
 
   constructor() { }
 
@@ -17,16 +18,16 @@ export class ProfessorService {
     return this.http.get<Professor[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Professor>{
+    return this.http.delete<Professor>(this.API+"/deleteById/"+id);
   }
 
-  save(professor: Professor): Observable<string>{
-    return this.http.post<string>(this.API+"/save", professor, {responseType: 'text' as 'json'});
+  save(professor: Professor): Observable<Professor>{
+    return this.http.post<Professor>(this.API+"/save", professor);
   }
 
-  update(professor: Professor, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, professor, {responseType: 'text' as 'json'});
+  update(professor: Professor, id: number): Observable<Professor>{
+    return this.http.put<Professor>(this.API+"/update/"+id, professor);
   }
 
   findById(id: number): Observable<Professor>{

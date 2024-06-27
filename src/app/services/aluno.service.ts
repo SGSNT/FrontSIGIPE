@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Aluno } from '../models/aluno';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AlunoService {
 
   http = inject(HttpClient);
 
-  API = "http://localhost:8081/api/aluno";
+  API = environment.SERVIDOR+"/api/aluno";
 
   constructor() { }
 
@@ -18,16 +19,16 @@ export class AlunoService {
     return this.http.get<Aluno[]>(this.API+"/findAll");
   }
 
-  delete(id: number): Observable<string>{
-    return this.http.delete<string>(this.API+"/deleteById/"+id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<Aluno>{
+    return this.http.delete<Aluno>(this.API+"/deleteById/"+id);
   }
 
-  save(aluno: Aluno): Observable<string>{
-    return this.http.post<string>(this.API+"/save", aluno, {responseType: 'text' as 'json'});
+  save(aluno: Aluno): Observable<Aluno>{
+    return this.http.post<Aluno>(this.API+"/save", aluno);
   }
 
-  update(aluno: Aluno, id: number): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, aluno, {responseType: 'text' as 'json'});
+  update(aluno: Aluno, id: number): Observable<Aluno>{
+    return this.http.put<Aluno>(this.API+"/update/"+id, aluno);
   }
 
   findById(id: number): Observable<Aluno>{
