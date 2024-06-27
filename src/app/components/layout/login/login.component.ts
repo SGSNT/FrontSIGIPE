@@ -97,10 +97,10 @@ export class LoginComponent {
       case 'professor':
         this.router.navigate(['professor/demandas-disponiveis']);
         break;
-      case 'coordenacaoCurso':
+      case 'coordenadorCurso':
         this.router.navigate(['coordenacao-curso/demandas-disponiveis']);
         break;
-      case 'coordenacaoExtensao':
+      case 'coordenadorExtensao':
         this.router.navigate(['coordenacao-extensao/dashboard']);
         break;
       default:
