@@ -1,4 +1,5 @@
 <mdb-accordion>
+  <!-- 1ª camada -->
   <mdb-accordion-item>
     <ng-template mdbAccordionItemHeader>
       <h2>1ª Camada</h2>
@@ -9,15 +10,20 @@
         <mdb-accordion-item>
           <ng-template mdbAccordionItemHeader>Curso</ng-template>
           <ng-template mdbAccordionItemBody>
-            <div class="btnRow">
-                <button type="button" class="btn btn-primary" mdbRipple>Cadastrar</button>
-                <button type="button" class="btn btn-primary" mdbRipple>Button</button>
-                <button type="button" class="btn btn-primary" mdbRipple>Button</button>
-            </div>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnCadastrar"
+              mdbRipple
+              (click)="saveCurso()"
+            >
+              Cadastrar
+            </button>
             <ol class="list-group list-group-light list-group-numbered">
               @for (curso of listaCursos; track $index) {
               <li
                 class="list-group-item d-flex justify-content-between align-items-start"
+                (click)="updateCurso(curso)"
               >
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">{{ curso.nome }}</div>
@@ -36,10 +42,20 @@
         <mdb-accordion-item>
           <ng-template mdbAccordionItemHeader>Tipo Instituição</ng-template>
           <ng-template mdbAccordionItemBody>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnCadastrar"
+              mdbRipple
+              (click)="saveTipo()"
+            >
+              Cadastrar
+            </button>
             <ol class="list-group list-group-light list-group-numbered">
               @for (tipo of listaTipos; track $index) {
               <li
                 class="list-group-item d-flex justify-content-between align-items-start"
+                (click)="updateTipo(tipo)"
               >
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">{{ tipo.nome }}</div>
@@ -54,15 +70,27 @@
         <mdb-accordion-item>
           <ng-template mdbAccordionItemHeader>Status Demanda</ng-template>
           <ng-template mdbAccordionItemBody>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnCadastrar"
+              mdbRipple
+              (click)="saveStatus()"
+            >
+              Cadastrar
+            </button>
             <ol class="list-group list-group-light list-group-numbered">
-                @for (status of listaStatus; track $index) {
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{status.nome}}</div>
-                      </div>
-                    </li>
-                }
-              </ol>
+              @for (status of listaStatus; track $index) {
+              <li
+                class="list-group-item d-flex justify-content-between align-items-start"
+                (click)="updateStatus(status)"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ status.nome }}</div>
+                </div>
+              </li>
+              }
+            </ol>
           </ng-template>
         </mdb-accordion-item>
 
@@ -70,16 +98,28 @@
         <mdb-accordion-item>
           <ng-template mdbAccordionItemHeader>Coordenador Extensão</ng-template>
           <ng-template mdbAccordionItemBody>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnCadastrar"
+              mdbRipple
+              (click)="saveCoordenadorExtensao()"
+            >
+              Cadastrar
+            </button>
             <ol class="list-group list-group-light list-group-numbered">
-                @for (coordenador of listaCoordenadorExtensao; track $index) {
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <div class="ms-2 me-auto">
-                        <div class="fw-bold">{{coordenador.nome}}</div>
-                        CPF: {{coordenador.cpf}}
-                      </div>
-                    </li>
-                }
-              </ol>
+              @for (coordenador of listaCoordenadorExtensao; track $index) {
+              <li
+                class="list-group-item d-flex justify-content-between align-items-start"
+                (click)="updateCoordenadorExtensao(coordenador)"
+              >
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold">{{ coordenador.nome }}</div>
+                  CPF: {{ coordenador.cpf }}
+                </div>
+              </li>
+              }
+            </ol>
           </ng-template>
         </mdb-accordion-item>
       </mdb-accordion>
@@ -154,3 +194,85 @@
     </ng-template>
   </mdb-accordion-item>
 </mdb-accordion>
+
+<!-- modal curso -->
+<ng-template #modalCurso>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalCurso">Curso</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalcurso
+      [curso]="cursoSelect"
+      (retorno)="voltaModal($event)"
+    ></app-modalcurso>
+  </div>
+</ng-template>
+
+<!-- modal tipo -->
+<ng-template #modalTipoinstituicao>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalTipoinstituicao">Tipo Instituicao</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modaltipoinstituicao
+      [tipo]="tipoSelect"
+      (retorno)="voltaModal($event)"
+    ></app-modaltipoinstituicao>
+  </div>
+</ng-template>
+
+<!-- modal coordenador de extensao -->
+<ng-template #modalCoordenadorExtensao>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalCoordenadorExtensao">
+      Coordenador de Extensão
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalcoordenadorextensao
+      [coordenadorextensao]="coordendaorExtensaoSelect"
+      (retorno)="voltaModal($event)"
+    ></app-modalcoordenadorextensao>
+  </div>
+</ng-template>
+
+<!-- modal status -->
+<ng-template #modalStatusDemanda>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalStatusDemanda">Status de Demanda</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalstatusdemanda
+      [status]="statusSelect"
+      (retorno)="voltaModal($event)"
+    ></app-modalstatusdemanda>
+  </div>
+</ng-template>

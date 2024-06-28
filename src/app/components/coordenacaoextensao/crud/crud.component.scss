@@ -1,6 +1,6 @@
-.btnRow{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.list-group-item{
+    cursor: pointer;
+}
+.list-group-item:hover{
+    background-color: #d4d4d4;
 }

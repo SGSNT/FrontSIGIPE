@@ -1,0 +1,11 @@
+<form>
+    <!-- nome  -->
+    <mdb-form-control class="mb-4">
+      <input mdbInput type="text" id="nome" name="nome" class="form-control" [(ngModel)]="status.nome" />
+      <label mdbLabel class="form-label" for="nome">Nome</label>
+    </mdb-form-control>
+  
+    <!-- Submit button -->
+    <button mdbRipple type="button" class="btn btn-primary btn-block" (click)="save()">Salvar</button>
+    <button mdbRipple type="button" class="btn btn-danger btn-block" (click)="deleteById()">Delatar</button>
+  </form>

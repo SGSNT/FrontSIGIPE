@@ -20,7 +20,7 @@ import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
     FormsModule,
     MdbModalModule,
     ModalgacursosComponent,
-    MdbAccordionModule
+    MdbAccordionModule,
   ],
   templateUrl: './gacursos.component.html',
   styleUrl: './gacursos.component.scss',
@@ -59,7 +59,7 @@ export class GacursosComponent {
     this.cursoEdit = new Curso();
     this.modalRef = this.modalService.open(this.modalCadastrarCurso); //usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
   }
-  update(curso: Curso){
+  update(curso: Curso) {
     this.cursoEdit = Object.assign({}, curso);
     this.modalRef = this.modalService.open(this.modalCadastrarCurso); //usa modalService para abrir o trecho observado por modalDetalher e salva uma referência ao modal em modalRef
   }
@@ -83,9 +83,9 @@ export class GacursosComponent {
           next: (cursoDeletado) => {
             this.findAll();
             Swal.fire({
-              title: "Curso salvo!",
-              text: "Curso: " + cursoDeletado.nome + " deletado com sucesso.",
-              icon: "success"
+              title: 'Curso salvo!',
+              text: 'Curso: ' + cursoDeletado.nome + ' deletado com sucesso.',
+              icon: 'success',
             });
           },
           error: (erro) => {
@@ -101,7 +101,7 @@ export class GacursosComponent {
       }
     });
   }
-  criarTurmas(){
-    console.log("Sem implementação");
+  criarTurmas() {
+    console.log('Sem implementação');
   }
 }
