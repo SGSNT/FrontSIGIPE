@@ -164,20 +164,40 @@
     </ng-template>
   </mdb-accordion-item>
 
+  <!-- 3ª camada -->
   <mdb-accordion-item>
     <ng-template mdbAccordionItemHeader>
       <h2>3ª Camada</h2>
     </ng-template>
     <ng-template mdbAccordionItemBody>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
-      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
-      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-      aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
+      <mdb-accordion>
+        <!-- Coordenador curso -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Coordenador de Curso</ng-template>
+          <ng-template mdbAccordionItemBody>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnCadastrar"
+              mdbRipple
+              (click)="saveCoordenadorCurso()"
+            >
+              Cadastrar
+            </button>
+            <ul class="list-group list-group-light">
+              @for (coordenador of listaCoordenadorCurso; track $index) {
+              <li class="list-group-item d-flex justify-content-between align-items-center" (click)="updateCoordenadorCurso(coordenador)">
+                <div>
+                  <div class="fw-bold">{{coordenador.nome}}</div>
+                  <div class="text-muted">CPF: {{coordenador.cpf}}</div>
+                </div>
+                <span class="badge rounded-pill badge-success">{{coordenador.curso.nome}}</span>
+              </li>
+              }
+            </ul>
+          </ng-template>
+        </mdb-accordion-item>
+      </mdb-accordion>
     </ng-template>
   </mdb-accordion-item>
 
@@ -295,5 +315,26 @@
       [status]="statusSelect"
       (retorno)="voltaModal($event)"
     ></app-modalstatusdemanda>
+  </div>
+</ng-template>
+
+<!-- modal coordenador Curso -->
+<ng-template #modalCoordenadorCurso>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalStatusDemanda">Coordenador de Curso</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalcoordenadorcurso
+      [coordenadorCurso]="coordenadorCursoSelect"
+      [listaCursos]="listaCursos"
+      (retorno)="voltaModal($event)"
+    ></app-modalcoordenadorcurso>
   </div>
 </ng-template>

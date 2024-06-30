@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-modalcurso',
   standalone: true,
-  imports: [FormsModule, MdbFormsModule],
+  imports: [FormsModule, MdbFormsModule ],
   templateUrl: './modalcurso.component.html',
   styleUrl: './modalcurso.component.scss',
 })

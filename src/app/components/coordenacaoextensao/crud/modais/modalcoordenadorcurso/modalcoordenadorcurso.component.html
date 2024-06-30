@@ -1,0 +1,57 @@
+<form>
+  <!-- nome  -->
+  <mdb-form-control class="mb-4">
+    <input
+      mdbInput
+      type="text"
+      id="nome"
+      name="nome"
+      class="form-control"
+      [(ngModel)]="coordenadorCurso.nome"
+    />
+    <label mdbLabel class="form-label" for="nome">Nome</label>
+  </mdb-form-control>
+
+  <!-- CPF -->
+  <mdb-form-control class="mb-4">
+    <input
+      mdbInput
+      type="text"
+      id="quantidadePeriodos"
+      name="quantidadePeriodos"
+      class="form-control"
+      [(ngModel)]="coordenadorCurso.cpf"
+    />
+    <label mdbLabel class="form-label" for="quantidadePeriodos"
+      >Quantidade de períodos</label
+    >
+  </mdb-form-control>
+
+  <!-- Curso -->
+  <mat-form-field>
+    <mat-label>Curso</mat-label>
+    <mat-select [(ngModel)]="cursoNomeSelect" name="curso">
+      @for (curso of listaCursos; track $index) {
+      <mat-option [value]="curso.nome">{{ curso.nome }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Submit button -->
+  <button
+    mdbRipple
+    type="button"
+    class="btn btn-primary btn-block"
+    (click)="save()"
+  >
+    Salvar
+  </button>
+  <button
+    mdbRipple
+    type="button"
+    class="btn btn-danger btn-block"
+    (click)="deleteById()"
+  >
+    Delatar
+  </button>
+</form>
