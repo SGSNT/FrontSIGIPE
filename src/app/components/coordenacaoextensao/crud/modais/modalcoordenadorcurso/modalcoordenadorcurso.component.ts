@@ -113,16 +113,14 @@ export class ModalcoordenadorcursoComponent {
       )
     ) {
       this.coordenadorCursoService.delete(this.coordenadorCurso.id).subscribe({
-        next: (cursoDeletado) => {
+        next: (objetoDeletado) => {
           Swal.fire({
-            title: 'CoordenadorCurso salvo!',
+            title: 'CoordenadorCurso excluído!',
             text:
-              'CoordenadorCurso: ' +
-              cursoDeletado.nome +
-              ' deletado com sucesso.',
+              'CoordenadorCurso:' + objetoDeletado.nome + ' deletado com sucesso.',
             icon: 'success',
           });
-          this.retorno.emit(cursoDeletado);
+          this.retorno.emit(objetoDeletado);
         },
         error: (erro) => {
           console.clear();
