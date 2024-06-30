@@ -10,65 +10,87 @@ import { TipoinstituicaoService } from '../../../services/tipoinstituicao.servic
 import { StatusdemandaService } from '../../../services/statusdemanda.service';
 import { CoordenadorextensaoService } from '../../../services/coordenadorextensao.service';
 import Swal from 'sweetalert2';
-import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import {
+  MdbModalModule,
+  MdbModalRef,
+  MdbModalService,
+} from 'mdb-angular-ui-kit/modal';
 import { ModalcursoComponent } from './modais/modalcurso/modalcurso.component';
 import { ModaltipoinstituicaoComponent } from './modais/modaltipoinstituicao/modaltipoinstituicao.component';
 import { ModalstatusdemandaComponent } from './modais/modalstatusdemanda/modalstatusdemanda.component';
 import { ModalcoordenadorextensaoComponent } from './modais/modalcoordenadorextensao/modalcoordenadorextensao.component';
+import { Turma } from '../../../models/turma';
+import { TurmaService } from '../../../services/turma.service';
 
 @Component({
   selector: 'app-crud',
   standalone: true,
-  imports: [MdbAccordionModule, ModalcursoComponent, MdbModalModule, ModaltipoinstituicaoComponent, ModalstatusdemandaComponent, ModalcoordenadorextensaoComponent],
+  imports: [
+    MdbAccordionModule,
+    ModalcursoComponent,
+    MdbModalModule,
+    ModaltipoinstituicaoComponent,
+    ModalstatusdemandaComponent,
+    ModalcoordenadorextensaoComponent,
+  ],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
 })
 export class CrudComponent {
+  // primeira camada
   listaCursos: Curso[] = [];
   listaTipos: Tipoinstituicao[] = [];
   listaStatus: Statusdemanda[] = [];
   listaCoordenadorExtensao: Coordenadorextensao[] = [];
+  //segunda camada
+  listaTurmas: Turma[] = [];
 
+  //primeira camada
   cursoSelect!: Curso;
   tipoSelect!: Tipoinstituicao;
   statusSelect!: Statusdemanda;
   coordendaorExtensaoSelect!: Coordenadorextensao;
+  //segunda camada
+  turmaSelect!: Turma;
 
-  
   modalRef!: MdbModalRef<any>; //conseguir fechar a modal aberta pelo TS
   @ViewChild('modalCurso')
   modalCurso!: TemplateRef<any>; //enxergar o bloco de html da modal de curso
   @ViewChild('modalTipoinstituicao')
-  modalTipoinstituicao!: TemplateRef<any>; 
+  modalTipoinstituicao!: TemplateRef<any>;
   @ViewChild('modalCoordenadorExtensao')
-  modalCoordenadorExtensao!: TemplateRef<any>; 
+  modalCoordenadorExtensao!: TemplateRef<any>;
   @ViewChild('modalStatusDemanda')
-  modalStatusDemanda!: TemplateRef<any>; 
+  modalStatusDemanda!: TemplateRef<any>;
 
   modalService = inject(MdbModalService); //serve para eu conseguir abrir a modal... pelo TS
   cursoService = inject(CursoService);
   tipoService = inject(TipoinstituicaoService);
   statusService = inject(StatusdemandaService);
   coordenadorExtensaoService = inject(CoordenadorextensaoService);
+  turmaService = inject(TurmaService);
 
   constructor() {
     this.findAllAll();
   }
 
   // métodos findAll
-  findAllAll(){
-    this.cursoSelect = new Curso;
-    this.tipoSelect = new Tipoinstituicao;
-    this.coordendaorExtensaoSelect = new Coordenadorextensao;
-    this.statusSelect = new Statusdemanda;
+  findAllAll() {
+    this.cursoSelect = new Curso();
+    this.tipoSelect = new Tipoinstituicao();
+    this.coordendaorExtensaoSelect = new Coordenadorextensao();
+    this.statusSelect = new Statusdemanda();
 
-    this.findAllCursos();
+    this.turmaSelect = new Turma();
+
+    this.findAllCurso();
     this.findAllTipo();
     this.findAllStatus();
     this.findAllCoordenadorExtensao();
+    this.findAllTurma();
   }
 
-  findAllCursos() {
+  findAllCurso() {
     this.cursoService.findAll().subscribe({
       next: (listaRecebida) => {
         this.listaCursos = listaRecebida;
@@ -132,43 +154,96 @@ export class CrudComponent {
     });
   }
 
-  voltaModal(e: object){
+  findAllTurma() {
+    this.turmaService.findAll().subscribe({
+      next: (listaRecebida) => {
+        this.listaTurmas = listaRecebida;
+      },
+      error: (erro) => {
+        console.clear();
+        console.log(erro);
+        Swal.fire({
+          title: 'Ocorreu um erro',
+          text: 'Mais informações no console da aplicação',
+          icon: 'error',
+        });
+      },
+    });
+  }
+
+  voltaModal(e: object) {
     this.findAllAll();
     this.modalRef.close();
   }
 
   // métodos save
-  saveCurso(){
+  saveCurso() {
     this.cursoSelect = new Curso();
     this.modalRef = this.modalService.open(this.modalCurso);
   }
-  saveTipo(){
+  saveTipo() {
     this.tipoSelect = new Tipoinstituicao();
     this.modalRef = this.modalService.open(this.modalTipoinstituicao);
   }
-  saveStatus(){
+  saveStatus() {
     this.statusSelect = new Statusdemanda();
     this.modalRef = this.modalService.open(this.modalStatusDemanda);
   }
-  saveCoordenadorExtensao(){
+  saveCoordenadorExtensao() {
     this.coordendaorExtensaoSelect = new Coordenadorextensao();
     this.modalRef = this.modalService.open(this.modalCoordenadorExtensao);
   }
+  gerarTurmas() {
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Esta operação irá deletar todas as turmas salvas no sistema',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Gerar turmas',
+      customClass: {
+        container: 'custom-swal-container', // classe personalizada para o container do SweetAlert2
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.turmaService.gerarTurmas().subscribe({
+          next: (turmasGeradas) => {
+            Swal.fire({
+              title: 'Turmas geradas!',
+              text: 'Turmas criadas com sucesso.',
+              icon: 'success',
+            });
+            this.findAllTurma();
+          },
+          error: (erro) => {
+            console.clear();
+            console.log(erro);
+            Swal.fire({
+              title: 'Ocorreu um erro',
+              text: 'Mais informações no console da aplicação',
+              icon: 'error',
+            });
+          },
+        });
+      }
+    });
+  }
 
   // métodos de update
-  updateCurso(curso: Curso){
+  updateCurso(curso: Curso) {
     this.cursoSelect = Object.assign({}, curso);
     this.modalRef = this.modalService.open(this.modalCurso);
   }
-  updateTipo(tipo: Tipoinstituicao){
+  updateTipo(tipo: Tipoinstituicao) {
     this.tipoSelect = Object.assign({}, tipo);
     this.modalRef = this.modalService.open(this.modalTipoinstituicao);
   }
-  updateStatus(status: Statusdemanda){
+  updateStatus(status: Statusdemanda) {
     this.statusSelect = Object.assign({}, status);
     this.modalRef = this.modalService.open(this.modalStatusDemanda);
   }
-  updateCoordenadorExtensao(coordenadorExtensao: Coordenadorextensao){
+  updateCoordenadorExtensao(coordenadorExtensao: Coordenadorextensao) {
     this.coordendaorExtensaoSelect = Object.assign({}, coordenadorExtensao);
     this.modalRef = this.modalService.open(this.modalCoordenadorExtensao);
   }

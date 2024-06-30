@@ -34,4 +34,8 @@ export class TurmaService {
   findById(id: number): Observable<Turma>{
     return this.http.get<Turma>(this.API+"/findById/"+id);
   }
+
+  gerarTurmas(): Observable<Turma[]>{
+    return this.http.post<Turma[]>(this.API+"/gerarTurmas", null);
+  }
 }
