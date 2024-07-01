@@ -197,6 +197,22 @@
             </ul>
           </ng-template>
         </mdb-accordion-item>
+        
+        <!-- Professor -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Professor de Projeto Integrador</ng-template>
+          <ng-template mdbAccordionItemBody>
+            sem implementação
+          </ng-template>
+        </mdb-accordion-item>
+        
+        <!-- Aluno -->
+        <mdb-accordion-item>
+          <ng-template mdbAccordionItemHeader>Aluno</ng-template>
+          <ng-template mdbAccordionItemBody>
+            sem implementação
+          </ng-template>
+        </mdb-accordion-item>
       </mdb-accordion>
     </ng-template>
   </mdb-accordion-item>
@@ -206,15 +222,7 @@
       <h2>4ª Camada</h2>
     </ng-template>
     <ng-template mdbAccordionItemBody>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
-      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
-      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-      aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
+      sem implementação
     </ng-template>
   </mdb-accordion-item>
 
@@ -223,15 +231,7 @@
       <h2>5ª Camada</h2>
     </ng-template>
     <ng-template mdbAccordionItemBody>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-      richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
-      dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf
-      moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-      assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-      wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-      butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-      aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
+      sem implementação
     </ng-template>
   </mdb-accordion-item>
 </mdb-accordion>
@@ -336,5 +336,27 @@
       [listaCursos]="listaCursos"
       (retorno)="voltaModal($event)"
     ></app-modalcoordenadorcurso>
+  </div>
+</ng-template>
+
+<!-- modal professor -->
+<ng-template #modalProfessor>
+  <div class="modal-header">
+    <h5 class="modal-title" id="modalStatusDemanda">Professor de Projeto Integrador</h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body modal-lg">
+    <app-modalprofessor
+      [professor]="professorSelect"
+      [listaCursos]="listaCursos"
+      [listaTurmas]="listaTurmas"
+      (retorno)="voltaModal($event)"
+    ></app-modalprofessor>
   </div>
 </ng-template>

@@ -7,7 +7,7 @@
       id="nome"
       name="nome"
       class="form-control"
-      [(ngModel)]="coordenadorCurso.nome"
+      [(ngModel)]="professor.nome"
     />
     <label mdbLabel class="form-label" for="nome">Nome</label>
   </mdb-form-control>
@@ -20,11 +20,9 @@
       id="cpf"
       name="cpf"
       class="form-control"
-      [(ngModel)]="coordenadorCurso.cpf"
+      [(ngModel)]="professor.cpf"
     />
-    <label mdbLabel class="form-label" for="cpf"
-      >CPF</label
-    >
+    <label mdbLabel class="form-label" for="cpf">CPF</label>
   </mdb-form-control>
 
   <!-- Curso -->
@@ -37,6 +35,21 @@
     </mat-select>
   </mat-form-field>
 
+  <!-- Turma -->
+  <mat-form-field>
+    <mat-label>Turma</mat-label>
+    <mat-select [(ngModel)]="turmaIdSelect" name="turma" id="turmaMatSelect">
+        @if (listaTurmasFiltroCurso.length>0) { 
+            @for (turma of listaTurmasFiltroCurso; track $index) {
+                <mat-option [value]="turma.id">{{ turma.periodoCurso }}º Período</mat-option>
+            } 
+        } 
+        @else { 
+            <mat-option [value]="">Selecio um curso para habilitar a seleção de turmas</mat-option>
+        }
+    </mat-select>
+  </mat-form-field>
+
   <!-- Submit button -->
   <button
     mdbRipple
@@ -46,6 +59,7 @@
   >
     Salvar
   </button>
+  <!-- botão deletar -->
   <button
     mdbRipple
     type="button"

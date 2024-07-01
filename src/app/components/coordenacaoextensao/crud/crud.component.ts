@@ -23,6 +23,9 @@ import { Turma } from '../../../models/turma';
 import { TurmaService } from '../../../services/turma.service';
 import { ModalcoordenadorcursoComponent } from './modais/modalcoordenadorcurso/modalcoordenadorcurso.component';
 import { CoordenadorcursoService } from '../../../services/coordenadorcurso.service';
+import { Professor } from '../../../models/professor';
+import { ProfessorService } from '../../../services/professor.service';
+import { ModalprofessorComponent } from './modais/modalprofessor/modalprofessor.component';
 
 @Component({
   selector: 'app-crud',
@@ -34,7 +37,8 @@ import { CoordenadorcursoService } from '../../../services/coordenadorcurso.serv
     ModaltipoinstituicaoComponent,
     ModalstatusdemandaComponent,
     ModalcoordenadorextensaoComponent,
-    ModalcoordenadorcursoComponent
+    ModalcoordenadorcursoComponent,
+    ModalprofessorComponent,
   ],
   templateUrl: './crud.component.html',
   styleUrl: './crud.component.scss',
@@ -49,6 +53,7 @@ export class CrudComponent {
   listaTurmas: Turma[] = [];
   // terceira camada
   listaCoordenadorCurso: Coordenadorcurso[] = [];
+  listaProfessores: Professor[] = [];
 
   //primeira camada
   cursoSelect!: Curso;
@@ -59,6 +64,7 @@ export class CrudComponent {
   turmaSelect!: Turma;
   // terceira camada
   coordenadorCursoSelect!: Coordenadorcurso;
+  professorSelect!: Professor;
 
   modalRef!: MdbModalRef<any>; //conseguir fechar a modal aberta pelo TS
   @ViewChild('modalCurso')
@@ -71,6 +77,8 @@ export class CrudComponent {
   modalStatusDemanda!: TemplateRef<any>;
   @ViewChild('modalCoordenadorCurso')
   modalCoordenadorCurso!: TemplateRef<any>;
+  @ViewChild('modalProfessor')
+  modalProfessor!: TemplateRef<any>;
 
   modalService = inject(MdbModalService); //serve para eu conseguir abrir a modal... pelo TS
   cursoService = inject(CursoService);
@@ -79,6 +87,7 @@ export class CrudComponent {
   coordenadorExtensaoService = inject(CoordenadorextensaoService);
   turmaService = inject(TurmaService);
   coordenadorCursoService = inject(CoordenadorcursoService);
+  professorService = inject(ProfessorService);
 
   constructor() {
     this.findAllAll();
@@ -94,6 +103,7 @@ export class CrudComponent {
     this.turmaSelect = new Turma();
 
     this.coordenadorCursoSelect = new Coordenadorcurso();
+    this.professorSelect = new Professor();
 
     this.findAllCurso();
     this.findAllTipo();
@@ -101,6 +111,7 @@ export class CrudComponent {
     this.findAllCoordenadorExtensao();
     this.findAllTurma();
     this.findAllCoordenadorCurso();
+    this.findAllProfessor();
   }
 
   findAllCurso() {
@@ -169,7 +180,26 @@ export class CrudComponent {
   findAllTurma() {
     this.turmaService.findAll().subscribe({
       next: (listaRecebida) => {
-        this.listaTurmas = listaRecebida;
+        this.listaTurmas = [];
+        listaRecebida.forEach((turma, index) => {
+          if (!turma.periodoCurso) {
+            let id: number = parseInt(JSON.stringify(turma));
+            this.turmaService.findById(id).subscribe({
+              next: (turmaRecebida) => {
+                listaRecebida[index] = turmaRecebida;
+                this.listaTurmas.push(turmaRecebida);
+              },
+              error: (erro) => {
+                throw new Error(
+                  'Não foi possível achar a turma de id: ' + id,
+                  erro
+                );
+              },
+            });
+          } else {
+            this.listaTurmas.push(listaRecebida[index]);
+          }
+        });
       },
       error: (erro) => {
         console.clear();
@@ -186,6 +216,24 @@ export class CrudComponent {
     this.coordenadorCursoService.findAll().subscribe({
       next: (listaRecebida) => {
         this.listaCoordenadorCurso = listaRecebida;
+        console.log('lista recebida do back', listaRecebida);
+        console.log('lista reativa', this.listaCoordenadorCurso);
+      },
+      error: (erro) => {
+        console.clear();
+        console.log(erro);
+        Swal.fire({
+          title: 'Ocorreu um erro',
+          text: 'Mais informações no console da aplicação',
+          icon: 'error',
+        });
+      },
+    });
+  }
+  findAllProfessor() {
+    this.professorService.findAll().subscribe({
+      next: (listaRecebida) => {
+        this.listaProfessores = listaRecebida;
       },
       error: (erro) => {
         console.clear();
@@ -261,6 +309,10 @@ export class CrudComponent {
     this.coordenadorCursoSelect = new Coordenadorcurso();
     this.modalRef = this.modalService.open(this.modalCoordenadorCurso);
   }
+  saveProfessor() {
+    this.professorSelect = new Professor();
+    this.modalRef = this.modalService.open(this.modalProfessor);
+  }
 
   // métodos de update
   updateCurso(curso: Curso) {
@@ -282,5 +334,9 @@ export class CrudComponent {
   updateCoordenadorCurso(coordenadorCurso: Coordenadorcurso) {
     this.coordenadorCursoSelect = Object.assign({}, coordenadorCurso);
     this.modalRef = this.modalService.open(this.modalCoordenadorCurso);
+  }
+  updateProfessor(professor: Professor) {
+    this.professorSelect = Object.assign({}, professor);
+    this.modalRef = this.modalService.open(this.modalProfessor);
   }
 }
