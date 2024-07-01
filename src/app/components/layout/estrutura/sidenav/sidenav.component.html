@@ -41,77 +41,9 @@
 
         <p>Demanda</p>
       </a>
-      } @if(loginService.hasPermission("aluno") ||
-      loginService.hasPermission("professor") ||
-      loginService.hasPermission("coordenadorCurso")){
-      <a href="#" class="sideNavBtn">
-        <svg
-          width="34"
-          height="44"
-          viewBox="0 0 34 44"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M30.9293 42.5727H3.07066C2.49251 42.5727 2 42.1016 2 41.502V2.95811C2 2.37996 2.47109 1.88745 3.07066 1.88745H30.9293C31.5075 1.88745 32 2.35854 32 2.95811V41.5234C31.9786 42.1016 31.5075 42.5727 30.9293 42.5727Z"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M19.1309 36.1488H25.5548"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.42383 16.8768H23.4131"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.42383 21.1593H23.4131"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.42383 12.5941H25.5544"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.42383 8.3114H25.5544"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M8.42383 25.4421H20.0512"
-            stroke="white"
-            stroke-width="2.48725"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <p>Histórico</p>
-      </a>
-      } @if(loginService.hasPermission("coordenadorCurso")){
+      }
+      
+      @if(loginService.hasPermission("coordenadorCurso")){
       <a href="#" class="sideNavBtn">
         <svg
           width="43"

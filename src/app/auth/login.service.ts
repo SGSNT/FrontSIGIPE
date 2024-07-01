@@ -5,6 +5,7 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import { Login } from './login';
 import { Usuario } from './usuario';
 import { environment } from '../../environments/environment';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class LoginService {
 
   logar(login: Login): Observable<string> {
     return this.http.post<string>(this.API, login, {responseType: 'text' as 'json'});
+    this.isTokenExpired();
   }
 
   addToken(token: string) {
