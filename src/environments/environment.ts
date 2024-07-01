@@ -1,3 +1,3 @@
 export const environment = {
-    SERVIDOR: "http://54.175.81.115:8080"
+    SERVIDOR: "http://18.218.92.14:8080"
 };
